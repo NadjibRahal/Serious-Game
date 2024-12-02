@@ -120,6 +120,7 @@ Les joueurs peuvent investir dans des technologies pour améliorer leur stratég
 5. Signature de conventions avec des fournisseurs pour acheter **2 ressources en 1 round.**  
 6. Machines agricoles automatiques pour envoyer les ressources directement aux usines à chaque round.  
 7. Doublement de la production des usines.
+8. compensation carbonne et sequestration naturel 
 
 ---
 
@@ -141,7 +142,7 @@ Les joueurs peuvent investir dans des technologies pour améliorer leur stratég
 
 ### **Critère de Fin de Partie**
 - **Condition d'arrêt :** Lorsque toutes les ressources disponibles sont épuisées.  
-- **Gagnant :** Le joueur ayant le **meilleur ratio pollution/capital** est déclaré vainqueur.
+- **Gagnant :** Le joueur ayant le **meilleur ratio capital/pollution** est déclaré vainqueur.
 **Aspects éducatifs :**
 - Comprendre les principes et avantages de l'économie circulaire.
 - Apprendre sur les synergies industrielles et la valorisation des déchets.

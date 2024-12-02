@@ -137,3 +137,83 @@ Ce que vous gardez et ce que vous changez :
 **Phase 4 :**  
 - Finalisation des deux versions et préparation de la présentation finale.  
 - Si la version virtuelle n’est pas finalisée à temps, la priorité sera donnée à la version physique.  
+
+
+
+
+
+
+
+
+
+
+---
+
+## **Tableau de Bord - Séance du 2 Décembre 2024**
+
+### **Objectifs de la séance :**
+1. **Définir les détails des cartes de technologie** : Élaborer les coûts et impacts des différentes technologies sur l'argent, les usines et la taxe carbone.
+2. **Diagramme de Gantt** : Élaborer un diagramme de Gantt pour la planification du projet à moyen et long terme.
+   
+### **Travail effectué** :
+
+#### **1. Cartes de Technologie**
+Les cartes de technologie ont été affinées avec des coûts spécifiques, des revenus générés, ainsi que des réductions de pollution et des ajustements relatifs à la taxe carbone. Voici un résumé des technologies abordées et de leur impact :
+
+---
+
+### **Cartes de Technologie - Détails**
+
+| **Nom de la Technologie**                          | **Impact sur l'argent (en EC)**                | **Impact sur les usines**                                    | **Coût Initial (en EC)** | **Coût de Maintenance (en EC)** |
+|---------------------------------------------------|------------------------------------------------|-------------------------------------------------------------|--------------------------|--------------------------------|
+| **Plantation d'Arbres et Afforestation (Amélioration)** | - Réduit la taxe carbone de 10 EC par terrain planté<br>- Génère 5 EC par terrain planté par round | - Bloque l'utilisation des terrains pour les usines<br>- Génère des crédits carbone | 200 EC par terrain (achat terrain)<br>50 EC (plantation) | 10 EC par terrain |
+| **Capture de Carbone par les Océans (Nouvelle Technologie)** | - Réduit la taxe carbone de 100 EC par round | - Coût élevé, nécessite une infrastructure pour l'installation | 600 EC (initial) | 50 EC par round |
+| **Automatisation Modulaire (Amélioration)**        | - Génère 50 EC supplémentaires par module par round<br>- Réduit le coût des travailleurs de 20 EC par module | - Réduit le besoin en travailleurs<br>- Augmente la productivité | 150 EC par module | 15 EC par module |
+| **Mix Énergétique Renouvelable Hybride (Amélioration)** | - Réduit la pollution de 100 EC par round | - Réduit les émissions polluantes globales des usines | 500 EC | 50 EC par round |
+| **Stockage d'Énergie Avancé (Nouvelle Technologie)** | - Génère 75 EC supplémentaires par round | - Améliore l'efficacité des usines utilisant de l'énergie renouvelable | 400 EC | 25 EC par round |
+| **Capture de Carbone Modulaire (Amélioration)**    | - Réduit la pollution de 50 EC par module par round | - Nécessite l'installation de modules de capture dans les usines | 200 EC par module | 15 EC par module |
+| **Cobots Adaptatifs (Amélioration)**               | - Génère 60 EC supplémentaires par round<br>- Réduit les coûts de travailleurs de 25 EC par round | - Améliore la productivité des usines<br>- Réduit le besoin en travailleurs | 250 EC | 20 EC par round |
+| **Logistique Autonome et Optimisée (Amélioration)** | - Réduit les coûts de transport de 80 EC par round<br>- Réduit la pollution de 50 EC par round | - Réduit les coûts liés à la logistique et améliore l’efficacité | 600 EC | 40 EC par round |
+| **Transport Multimodal et Électrification (Nouvelle Technologie)** | - Réduit la pollution de 100 EC par round<br>- Réduit les coûts de transport de 120 EC par round | - Optimise le transport de ressources et de produits finis | 800 EC | 50 EC par round |
+| **Recyclage (Amélioration)**                      | - Génère 100 EC supplémentaires par round<br>- Réduit la pollution de 40 EC par round | - Valorise les sous-produits et réduit les déchets | 300 EC | 15 EC par round |
+| **Impression 3D à la Demande (Amélioration)**      | - Réduit les coûts de production de 50 EC par round<br>- Réduit les déchets de 30 EC par round | - Réduit le besoin de stockage et améliore l'efficacité | 200 EC | 10 EC par round |
+| **Contrats Verts et Chaînes d'Approvisionnement Durables (Amélioration)** | - Réduit les coûts des ressources de 80 EC par round<br>- Augmente les coûts de transport de 20 EC par round | - Favorise des pratiques écologiques et responsables dans les achats et la logistique | 150 EC | Aucune maintenance définie |
+
+---
+
+#### **2. Diagramme de Gantt**
+Trois membres de l'équipe ont travaillé sur un **Diagramme de Gantt** pour la planification et la gestion du projet. Les éléments clés inclus dans le diagramme sont les suivants :
+  
+- **Développement des Cartes de Technologie** : Analyse détaillée de chaque technologie, élaboration des coûts et impacts (représenté par une barre de durée de 3 jours)
+- **Test des Technologies** : Mise en œuvre d'une phase de test pour évaluer l'impact des technologies sur les usines et l'environnement (barre de 5 jours)
+- **Évaluation des Réactions au Marché** : Intégration des réponses du marché et ajustement des coûts (barre de 2 jours)
+- **Rétroactions de l’Équipe et Améliorations** : Analyse des résultats et ajustement des modèles de coût (barre de 3 jours)
+  
+**Timeline Générale** :
+- **Phase de Développement des Cartes de Technologie** : 2 Décembre - 5 Décembre
+- **Phase de Tests et Évaluations Initiales** : 6 Décembre - 10 Décembre
+- **Phase d’Ajustement et Finalisation** : 11 Décembre - 15 Décembre
+  
+---
+
+### **Ressources et Membres impliqués :**
+
+- **Équipe A** (Travail sur les cartes de technologie) :
+  - **Membre 1** : Spécialiste en environnement et technologies vertes (révision des impacts environnementaux des cartes)
+  - **Membre 2** : Expert en économie et finances (calculs des coûts et des effets sur les ressources)
+  - **Membre 3** : Développeur de mécanismes de jeu (ajustement des mécanismes de production et d'interactions avec les technologies)
+  
+- **Équipe B** (Travail sur le diagramme de Gantt) :
+  - **Membre 4** : Responsable de la gestion de projet (création du diagramme de Gantt et de la timeline)
+  - **Membre 5** : Analyste des données (évaluation des délais et ressources nécessaires)
+  - **Membre 6** : Coordonnateur de projet (suivi des tâches et des responsabilités)
+
+---
+
+### **Prochaines étapes :**
+1. **Suivi de l'implémentation des technologies** : Tester les impacts des cartes de technologie en environnement simulé.
+2. **Révision du diagramme de Gantt** : Ajuster les durées des différentes phases en fonction des retours d’expérience.
+3. **Évaluation finale** : Préparer un rapport de synthèse pour la prochaine séance de travail.
+
+---
+

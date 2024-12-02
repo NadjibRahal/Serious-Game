@@ -216,3 +216,131 @@ Le jeu permet aux joueurs de développer des usines, gérer des ressources et in
     La gestion des ressources est essentielle pour maximiser la production tout en minimisant les coûts de transport et l'impact environnemental.
  
 
+
+
+1. Plantation d'Arbres et Afforestation (Amélioration)
+
+    Description : Acheter des terrains et planter des arbres pour absorber le CO2 et générer des crédits carbone. Les essences d'arbres varient en fonction du taux d'absorption et du coût.
+    Impact :
+        Réduction de la taxe carbone : Réduit la taxe carbone de 10 EC par terrain planté.
+        Génération de crédits carbone : Générez 5 EC par terrain planté par round.
+        Coût d'achat du terrain : 200 EC par terrain.
+        Coût de plantation : 50 EC par terrain.
+        Maintenance annuelle : 10 EC par terrain.
+    Effet global :
+        Par terrain planté, réduction de la taxe carbone de 10 EC et génère 5 EC par round en crédits carbone, avec un coût de maintenance de 10 EC par round.
+
+2. Capture de Carbone par les Océans (Nouvelle Technologie)
+
+    Description : Investir dans des technologies permettant d'augmenter la capacité des océans à absorber le CO2.
+    Impact :
+        Réduction de la taxe carbone : Réduit de 100 EC par round.
+        Coût initial : 600 EC pour la recherche et l'installation.
+        Coût de maintenance : 50 EC par round.
+    Effet global :
+        Réduction de la taxe carbone de 100 EC par round avec un coût de maintenance modéré.
+
+3. Automatisation Modulaire (Amélioration)
+
+    Description : Permet d’automatiser progressivement les processus des usines par modules (production, maintenance, contrôle qualité...).
+    Impact :
+        Augmentation de la productivité : Chaque module génère 50 EC supplémentaires par round.
+        Réduction du besoin en travailleurs : Réduit le coût des travailleurs de 20 EC par round par module.
+        Coût par module : 150 EC.
+        Coût de maintenance : 15 EC par module par round.
+    Effet global :
+        Chaque module coûte 150 EC à l'installation, augmente la productivité de 50 EC par round, et réduit les coûts de travailleurs de 20 EC par round.
+
+4. Mix Énergétique Renouvelable Hybride (Amélioration)
+
+    Description : Combinaison de différentes sources d’énergie renouvelables (solaire, éolien, etc.). Les joueurs peuvent ajuster leur mix en fonction de la carte ou de la région.
+    Impact :
+        Réduction de la pollution : Réduit la pollution de 100 EC par round.
+        Coût initial : 500 EC pour l'installation.
+        Coût de maintenance : 50 EC par round.
+    Effet global :
+        Réduction de la pollution de 100 EC par round avec un coût initial de 500 EC et une maintenance de 50 EC par round.
+
+5. Stockage d'Énergie Avancé (Nouvelle Technologie)
+
+    Description : Permet de stocker l'énergie excédentaire produite par les énergies renouvelables pour l'utiliser lors des pics de demande ou des périodes de faible production.
+    Impact :
+        Augmentation de l'efficacité : Génère 75 EC supplémentaires par round grâce à la gestion de l'énergie.
+        Coût initial : 400 EC.
+        Coût de maintenance : 25 EC par round.
+    Effet global :
+        Augmente les gains de 75 EC par round, avec un coût initial de 400 EC et une maintenance modérée de 25 EC par round.
+
+6. Capture de Carbone Modulaire (Amélioration)
+
+    Description : Permet de capturer le CO2 à différentes étapes du processus industriel (combustion, fermentation, etc.). Les joueurs choisissent où installer les unités de capture.
+    Impact :
+        Réduction de la pollution : Chaque module réduit la pollution de 50 EC par round.
+        Coût par module : 200 EC.
+        Coût de maintenance : 15 EC par module par round.
+    Effet global :
+        Chaque module réduit la pollution de 50 EC par round, avec un coût initial de 200 EC par module et une maintenance de 15 EC par module par round.
+
+7. Cobots Adaptatifs (Amélioration)
+
+    Description : Robots collaboratifs qui s'adaptent aux besoins changeants de la production et aux compétences des travailleurs.
+    Impact :
+        Augmentation de la productivité : Génère 60 EC supplémentaires par round.
+        Réduction du besoin en travailleurs : Réduit les coûts de travailleurs de 25 EC par round.
+        Coût initial : 250 EC.
+        Coût de maintenance : 20 EC par round.
+    Effet global :
+        Génère 60 EC supplémentaires par round en productivité et réduit les coûts des travailleurs de 25 EC par round. Coût d'installation : 250 EC avec une maintenance de 20 EC par round.
+
+8. Logistique Autonome et Optimisée (Amélioration)
+
+    Description : Véhicules autonomes (terrestres, aériens, maritimes) et gestion de flotte optimisée par IA pour améliorer les itinéraires.
+    Impact :
+        Réduction des coûts de transport : Réduit les coûts de transport de 80 EC par round.
+        Réduction de la pollution : Réduit la pollution de 50 EC par round.
+        Coût initial : 600 EC.
+        Coût de maintenance : 40 EC par round.
+    Effet global :
+        Réduit les coûts de transport de 80 EC et la pollution de 50 EC par round. Coût initial : 600 EC avec une maintenance de 40 EC par round.
+
+9. Transport Multimodal et Électrification (Nouvelle Technologie)
+
+    Description : Utilisation combinée de différents modes de transport (camions électriques, trains, barges électriques, drones) pour optimiser les coûts et réduire l'empreinte carbone.
+    Impact :
+        Réduction de la pollution : Réduit la pollution de 100 EC par round.
+        Économies sur le transport : Réduit les coûts de transport de 120 EC par round.
+        Coût initial : 800 EC.
+        Coût de maintenance : 50 EC par round.
+    Effet global :
+        Réduit la pollution de 100 EC et les coûts de transport de 120 EC par round. Coût initial : 800 EC avec une maintenance de 50 EC par round.
+
+10. Recyclage (Amélioration)
+
+    Description : Mise en place de systèmes de tri et de recyclage des déchets industriels, valorisation des sous-produits.
+    Impact :
+        Augmentation des ressources : Génère 100 EC supplémentaires par round grâce aux sous-produits et au recyclage.
+        Réduction de la pollution : Réduit la pollution de 40 EC par round.
+        Coût initial : 300 EC.
+        Coût de maintenance : 15 EC par round.
+    Effet global :
+        Génère 100 EC supplémentaires par round et réduit la pollution de 40 EC. Coût initial : 300 EC avec une maintenance de 15 EC par round.
+
+11. Impression 3D à la Demande (Amélioration)
+
+    Description : Production de pièces de rechange, d'outils et de composants spécifiques en fonction des besoins, réduisant les stocks et les délais.
+    Impact :
+        Réduction des coûts de production : Réduit les coûts de production de 50 EC par round.
+        Réduction des déchets : Réduit les déchets de 30 EC par round.
+        Coût initial : 200 EC.
+        Coût de maintenance : 10 EC par round.
+    Effet global :
+        Réduit les coûts de production de 50 EC et les déchets de 30 EC par round. Coût initial : 200 EC avec une maintenance de 10 EC par round.
+
+12. Contrats Verts et Chaînes d'Approvisionnement Durables (Amélioration)
+
+    Description : Collaboration avec des fournisseurs certifiés, audit des pratiques environnementales, utilisation de matériaux éco-responsables.
+    Impact :
+        Réduction des coûts des ressources : Réduit les coûts des ressources de 80 EC par round.
+        Augmentation légère des coûts de transport : Augmente les coûts de transport de 20 EC par round.
+        Coût initial : 150 EC
+

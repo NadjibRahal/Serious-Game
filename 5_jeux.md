@@ -116,11 +116,10 @@ Les joueurs peuvent investir dans des technologies pour améliorer leur stratég
 1. Automatisation complète des usines.  
 2. Utilisation d'énergie solaire pour réduire la pollution.  
 3. Capture de carbone.  
-4. Remplacement de plusieurs travailleurs par des robots.  
-5. Signature de conventions avec des fournisseurs pour acheter **2 ressources en 1 round.**  
-6. Machines agricoles automatiques pour envoyer les ressources directement aux usines à chaque round.  
-7. Doublement de la production des usines.
-8. compensation carbonne et sequestration naturel 
+4. Signature de conventions avec des fournisseurs pour acheter **2 ressources en 1 round.**  
+5. Machines agricoles automatiques pour envoyer les ressources directement aux usines à chaque round.  
+6. Doublement de la production des usines.
+7. Compensation Carbone et Séquestration Naturelle
 
 ---
 

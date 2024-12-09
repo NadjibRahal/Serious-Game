@@ -1,9 +1,9 @@
 ## **1. Présentation du jeu
 
 
-**Concept :** Eco-Factory Challenge est un jeu de plateau stratégique où 4 joueurs s'affrontent pour développer l'industrie la plus prospère tout en minimisant leur impact environnemental. Le jeu combine des mécaniques de gestion de ressources, de développement technologique et de prise de décision économique, le tout dans un contexte de sensibilisation aux enjeux écologiques. Les joueurs jouent le rôle d'un entrepreneur avec du Round 0 funding et sans autres ressources. 
+**Concept :** Eco-Factory Challenge est un jeu de plateau stratégique où 4 joueurs s'affrontent pour développer l'industrie la plus prospère tout en minimisant leur impact environnemental. Le jeu combine des mécaniques de gestion de ressources, de développement technologique et de prise de décision économique, le tout dans un contexte de sensibilisation aux enjeux écologiques. Les joueurs jouent le rôle d'un entrepreneur a partir de zero. 
 
-**Objectif :**  Le gagnant est le joueur qui obtient le meilleur ratio capital/pollution (susceptible de changer) à la fin de la partie, lorsque toutes les ressources sont épuisées.
+**Objectif :**  Le gagnant est le joueur qui obtient le meilleur ratio capital/pollution à la fin de la partie, lorsque toutes les ressources sont épuisées.
 
 **Mécaniques principales :**
 

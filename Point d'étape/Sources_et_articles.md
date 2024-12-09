@@ -7,6 +7,10 @@
 *   Rockström, J., Steffen, W., Noone, K., Persson, Å., Chapin III, F. S., Lambin, E. F., ... & Foley, J. A. (2009). A safe operating space for humanity. *Nature*, *461*(7263), 472-475.
 *   Mikhail Granovskii, Ibrahim Dincer, Marc A. Rosen, Economic and environmental comparison of conventional, hybrid, electric and hydrogen fuel cell vehicles, Journal of Power Sources, Volume 159, Issue 2, 2006.
 
+
+Ahmed Al-Mamoori, Anirudh Krishnamurthy, Ali A. Rownaghi, Dr. Fateme Rezaei. **"Carbon Capture and Utilization Update"**, *Energy Technology*, Volume 5, Issue 6, Special Issue: Carbon Dioxide Utilization, Pages 834-849, Wiley Online Library, 23 January 2017.  
+[DOI: 10.1002/ente.201600747](https://doi.org/10.1002/ente.201600747)
+
 **Articles de revues spécialisées :**
 
 *   "L'Usine Nouvelle" : [https://www.usinenouvelle.com/](https://www.usinenouvelle.com/)

@@ -8,8 +8,7 @@
 *   Mikhail Granovskii, Ibrahim Dincer, Marc A. Rosen, Economic and environmental comparison of conventional, hybrid, electric and hydrogen fuel cell vehicles, Journal of Power Sources, Volume 159, Issue 2, 2006.
 
 
-Ahmed Al-Mamoori, Anirudh Krishnamurthy, Ali A. Rownaghi, Dr. Fateme Rezaei. **"Carbon Capture and Utilization Update"**, *Energy Technology*, Volume 5, Issue 6, Special Issue: Carbon Dioxide Utilization, Pages 834-849, Wiley Online Library, 23 January 2017.  
-[DOI: 10.1002/ente.201600747](https://doi.org/10.1002/ente.201600747)
+*   Ahmed Al-Mamoori, Anirudh Krishnamurthy, Ali A. Rownaghi, Dr. Fateme Rezaei. **"Carbon Capture and Utilization Update"**, *Energy Technology*, Volume 5, Issue 6, Special Issue: Carbon Dioxide Utilization, Pages 834-849, Wiley Online Library, 23 January 2017.  [DOI: 10.1002/ente.201600747](https://doi.org/10.1002/ente.201600747)
 
 **Articles de revues spécialisées :**
 

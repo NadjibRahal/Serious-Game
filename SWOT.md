@@ -19,10 +19,3 @@ Voici une analyse SWOT adaptée du projet, incluant les forces, faiblesses, oppo
 | **Financement participatif :** Possibilité de lever des fonds via des plateformes de crowdfunding pour financer le développement du jeu.                                                           | **Difficulté à trouver un équilibre entre réalisme et fun :** Le jeu doit être à la fois éducatif et divertissant pour séduire un large public.                                                           |
 | **Extension du jeu :** Création d'extensions ou de scénarios additionnels pour prolonger la durée de vie du jeu.                                                                           | 
 | **Version Virtuelle :** permet de tester, d'avoir un jeu fonctionnel à moindre coût et rapidement                                                                                          | 
-
-**Remarques :**
-
-*   Cette analyse SWOT est basée sur les informations fournies dans les carnets de bord et la description du projet.
-*   Il est important de continuer à mettre à jour cette analyse au fur et à mesure de l'avancement du projet et de la prise en compte des retours des tests.
-*   L'equipe semble motivée, le resultat final dependra de la capacité de l'équipe à produire du code pour la version virtuelle.
-*   La version virtuelle semble plus prometteuse que la version physique en terme de faisabilité, de rejouabilité, et de reussite du projet.

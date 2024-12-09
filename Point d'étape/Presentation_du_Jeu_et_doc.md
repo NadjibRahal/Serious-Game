@@ -26,6 +26,18 @@
 *   **Version physique (DIY) :** Plateau de jeu, pions, cartes, etc. fabriqués manuellement.
 *   **Version virtuelle :** Développement d'une version numérique du jeu avec des fonctionnalités automatisées.
 
+
+## **Détails de la version numérique**
+
+La version numérique d'Eco-Factory Challenge sera développée en tant que **jeu de cartes** utilisant la bibliothèque **Pygame** en Python. Voici les choix techniques et la structure du code :
+
+*   **Langage de programmation :** Python
+*   **Bibliothèque :** Pygame
+*   **Type d'interaction :** Jeu de cartes et plateau au tour par tour, 4 joueurs sur le même ordinateur.
+*   **Données des cartes :** Les données des cartes etc sont stockées dans des fichiers **JSON** externes. Cela permet de modifier facilement les caractéristiques des cartes sans altérer le code du jeu, facilitant ainsi l'équilibrage.
+*   **Gestion des tours :** Le jeu se déroule au tour par tour (round). Chaque joueur effectue ses actions pendant son tour, puis passe la main au joueur suivant.
+*   **Interface utilisateur :** L'interface utilisateur est conçue pour être claire et intuitive, avec des informations visuelles sur l'état du jeu (ressources, pollution, main du joueur, etc.) et des boutons pour les actions possibles.
+
 **Enjeux clés :**
 
 1. **Ressources et efficacité :**

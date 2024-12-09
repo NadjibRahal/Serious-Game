@@ -1,13 +1,12 @@
 eco_factory_challenge/
 ├── main.py                 # Point d'entrée du jeu, initialise et lance la boucle de jeu
-├── constants.py            # Constantes du jeu (couleurs, dimensions, textes, etc.)
-├── game.py                 # Classe principale du jeu, gère la logique, les tours, etc.
-├── player.py               # Classe pour les joueurs (gestion de la main, des ressources, etc.)
-├── card.py                 # Classe pour les cartes (définition des types, effets, etc.)
-├── deck.py                  # Classe pour le paquet de cartes (mélange, distribution, etc.)
+├── constants.py            # Constantes du jeu
+├── game.py                 # Classe principale du jeu, gère la logique, les rounds etc
+├── player.py               # Classe pour les joueurs
+├── card.py                 # Classe pour les cartes
 ├── board.py                 # Classe pour représenter le plateau de jeu
-├── ui.py                   # Fonctions et classes pour l'interface utilisateur (affichage, boutons, etc.)
-├── utils.py                # Fonctions utilitaires diverses
+├── ui.py                   # Fonctions et classes pour l'interface utilisateur
+├── utils.py          
 ├── resources/              # Dossier pour les ressources
 │   ├── images/             # Images des cartes, du plateau, des icônes, etc.
 │   │   ├── card_fronts/    # Images pour le recto des cartes
@@ -23,10 +22,4 @@ eco_factory_challenge/
 │       ├── ressources.json    # Données des types de ressources
 │       ├── travailleurs.json  # Données des cartes de travailleurs (si applicable)
 │       └── transports.json    # Données des cartes de transport
-├── tests/                  # Dossier pour les tests unitaires (optionnel mais recommandé)
-│   ├── __init__.py
-│   ├── test_game.py
-│   ├── test_player.py
-│   └── ...
-├── .gitignore              # Fichier pour ignorer les fichiers non nécessaires dans le suivi de version (Git)
-└── README.md               # Fichier de description du projet
+└── README.md    

@@ -23,10 +23,7 @@ Ahmed Al-Mamoori, Anirudh Krishnamurthy, Ali A. Rownaghi, Dr. Fateme Rezaei. **"
 *   Interviews de responsables RSE (Responsabilité Sociétale des Entreprises) d'entreprises industrielles.
 *   Témoignages d'ingénieurs et de techniciens travaillant dans des secteurs liés à l'environnement et à l'industrie.
 
-**Vidéos documentaires :**
 
-*   "Demain" (Cyril Dion, Mélanie Laurent) : [https://www.youtube.com/watch?v=NUN06W8TGsk](https://www.youtube.com/watch?v=NUN06W8TGsk)
-*   "Avant le déluge" (Leonardo DiCaprio) : [https://www.youtube.com/watch?v=D9xFFyUOpXo](https://www.youtube.com/watch?v=D9xFFyUOpXo)
 
 **Ouvrages :**
 

@@ -1,10 +1,9 @@
-Voici le rappel des documents demandés pour le point d'étape, en utilisant les informations fournies dans les carnets de bord :
 
 ## **1. Présentation du jeu + "Fiche Gamae retravaillée"**
 
 ### **Présentation du jeu : Eco-Factory Challenge**
 
-**Concept :** Eco-Factory Challenge est un jeu de plateau stratégique où 4 joueurs s'affrontent pour développer l'industrie la plus prospère tout en minimisant leur impact environnemental. Le jeu combine des mécaniques de gestion de ressources, de développement technologique et de prise de décision économique, le tout dans un contexte de sensibilisation aux enjeux écologiques.
+**Concept :** Eco-Factory Challenge est un jeu de plateau stratégique où 4 joueurs s'affrontent pour développer l'industrie la plus prospère tout en minimisant leur impact environnemental. Le jeu combine des mécaniques de gestion de ressources, de développement technologique et de prise de décision économique, le tout dans un contexte de sensibilisation aux enjeux écologiques. Les joueurs jouent le rôle d'un entrepreneur avec du Round 0 funding et sans autres ressources. 
 
 **Objectif :**  Le gagnant est le joueur qui obtient le meilleur ratio pollution/capital à la fin de la partie, lorsque toutes les ressources sont épuisées.
 
@@ -96,7 +95,7 @@ L'industrie, moteur de la croissance économique, est aujourd'hui confrontée à
 
 **Conclusion :**
 
-La transition vers une industrie durable est un processus complexe qui nécessite des changements systémiques à tous les niveaux. L'innovation technologique, la collaboration entre les acteurs (entreprises, pouvoirs publics, recherche, société civile), l'évolution des réglementations et la sensibilisation des consommateurs sont des leviers essentiels pour relever les défis environnementaux et construire une économie plus résiliente et plus respectueuse de la planète.
+La transition vers une industrie durable est un processus complexe qui nécessite des changements systémiques à tous les niveaux. L'innovation technologique, la collaboration entre les acteurs (entreprises, pouvoirs publics, recherche, société civile), l'évolution des réglementations et la sensibilisation des consommateurs sont des leviers essentiels pour relever les défis environnementaux et construire une économie plus résiliente et plus respectueuse de la planète. C'est ce qu'on souhaite sensibiliser à travers ce jeu serieux. Ainsi que le fait qu'il puisse y avoir une économie viable sans émissions de carbone et avec une pollution minimale.
 
 ### **Références/Ressources pour aller plus loin :**
 
@@ -109,6 +108,8 @@ La transition vers une industrie durable est un processus complexe qui nécessit
 
 *   "L'Usine Nouvelle" : [https://www.usinenouvelle.com/](https://www.usinenouvelle.com/)
 *   "Environnement Magazine" : [https://www.environnement-magazine.fr/](https://www.environnement-magazine.fr/)
+*   "Compétitivité et décarbonation" [https://bigmedia.bpifrance.fr/decryptages/competitivite-et-decarbonation-quels-enjeux-souleve-la-taxe-carbone-pour-lindustrie-francaise]
+*   "Perspectives pour le prix carbone en europe" [https://tnova.fr/economie-social/finances-macro-economie/perspectives-pour-le-prix-du-carbone-en-europe/]
 
 **Retours de professionnels ou de personnes concernées :**
 
@@ -134,10 +135,10 @@ La transition vers une industrie durable est un processus complexe qui nécessit
 
 *   Loi relative à la transition énergétique pour la croissance verte (France) : [https://www.legifrance.gouv.fr/loda/id/JORFTEXT000031044385/](https://www.legifrance.gouv.fr/loda/id/JORFTEXT000031044385/)
 *   Directive européenne sur les émissions industrielles : [https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32010L0075](https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32010L0075)
+*   Mecanismes d'ajustement carbones: [https://trade.ec.europa.eu/access-to-markets/fr/news/mecanisme-dajustement-carbone-aux-frontieres-macf]
+*   Pollution de l'air et parlement europeen [https://www.europarl.europa.eu/news/fr/press-room/20240419IPR20587/pollution-de-l-air-le-pe-adopte-une-loi-pour-ameliorer-la-qualite-de-l-air]
 
 **Autres ressources :**
 
 *   ADEME (Agence de l'environnement et de la maîtrise de l'énergie) : [https://www.ademe.fr/](https://www.ademe.fr/)
 *   Ministère de la Transition écologique et solidaire : [https://www.ecologie.gouv.fr/](https://www.ecologie.gouv.fr/)
-
-Ces documents permettront au jury d'évaluer la qualité du projet, sa pertinence par rapport aux enjeux du développement durable et la capacité de l'équipe à mobiliser des ressources pertinentes pour enrichir leur réflexion.

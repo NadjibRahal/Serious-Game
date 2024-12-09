@@ -146,3 +146,7 @@ Les joueurs peuvent investir dans des technologies pour améliorer leur stratég
 - Comprendre les principes et avantages de l'économie circulaire.
 - Apprendre sur les synergies industrielles et la valorisation des déchets.
 - Explorer les défis et opportunités de la transition vers une économie durable.
+
+
+
+https://drive.uca.fr/d/42b5dab318474af8894f/

@@ -1,0 +1,27 @@
+## **1. Présentation du jeu
+
+
+**Concept :** Eco-Factory Challenge est un jeu de plateau stratégique où 4 joueurs s'affrontent pour développer l'industrie la plus prospère tout en minimisant leur impact environnemental. Le jeu combine des mécaniques de gestion de ressources, de développement technologique et de prise de décision économique, le tout dans un contexte de sensibilisation aux enjeux écologiques. Les joueurs jouent le rôle d'un entrepreneur avec du Round 0 funding et sans autres ressources. 
+
+**Objectif :**  Le gagnant est le joueur qui obtient le meilleur ratio capital/pollution (susceptible de changer) à la fin de la partie, lorsque toutes les ressources sont épuisées.
+
+**Mécaniques principales :**
+
+*   **Plateau de jeu :** Représente un territoire avec des ressources réparties aléatoirement.
+*   **Budget initial :** Limité, obligeant les joueurs à faire des choix stratégiques.
+*   **Achat de terrains :** Les terrains proches des ressources sont plus chers mais réduisent les coûts de transport.
+*   **5 types d'éléments :**
+    *   **Usines :** Permettent de transformer les ressources.
+    *   **Ressources :** Matériaux nécessaires à la production.
+    *   **Transports :** Déplacement des ressources et des produits finis (choix entre électrique et hydrocarbure).
+    *   **Travailleurs :** Main-d'œuvre nécessaire au fonctionnement des usines.
+    *   **Technologies :** Améliorations et innovations influençant l'efficacité, les coûts et l'impact environnemental (voir tableau des technologies).
+*   **Système d'achat :** Permet d'acquérir des terrains, des usines, des technologies, etc.
+*   **Gestion des ressources :** Optimisation de l'extraction, du transport et de la transformation des ressources.
+*   **Pollution :** Générée par les activités industrielles, impacte le score final via la taxe carbone.
+*   **Cartes Technologie :** Offrent des avantages économiques et environnementaux, avec des coûts d'investissement et de maintenance (voir détail des cartes plus bas).
+
+**Versions :**
+
+*   **Version physique (DIY) :** Plateau de jeu, pions, cartes, etc. fabriqués manuellement.
+*   **Version virtuelle :** Développement d'une version numérique du jeu avec des fonctionnalités automatisées.

@@ -12,7 +12,7 @@ The eco_factory_challenge is a game that simulates the management of an eco-frie
 ## Installation
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/eco_factory_challenge.git
+   git clone https://github.com/Gontary101/eco_factory_challenge.git
    ```
 2. Navigate to the project directory:
    ```

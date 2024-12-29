@@ -1,216 +1,216 @@
 {
-    "technologies": [
-      {
-        "name": "Plantation d'Arbres et Afforestation",
-        "type": "Amélioration",
-        "money_impact": {
-          "tax_reduction_per_terrain": 10,
-          "revenue_generation_per_terrain_per_round": 5,
-          "carbon_credits_generated": true
-        },
-        "factory_impact": {
-          "land_unusable_for_factories": true,
-          "land_required_per_terrain": 1 
-        },
-        "initial_cost": 250,
-        "maintenance_cost_per_terrain": 10,
-        "description": "Réduit la taxe carbone et génère des revenus par terrain planté. Bloque l'utilisation des terrains pour les usines.",
-        "metadata": {
-          "notes": "Les coûts initiaux incluent l'achat du terrain (200 EC) et la plantation (50 EC)."
-        }
+  "technologies": [
+    {
+      "name": "Plantation d'Arbres et Afforestation",
+      "type": "Amélioration",
+      "money_impact": {
+        "tax_reduction_per_terrain": 10,
+        "revenue_generation_per_terrain_per_round": 5,
+        "carbon_credits_generated": true
       },
-      {
-        "name": "Capture de Carbone par les Océans",
-        "type": "Nouvelle Technologie",
-        "money_impact": {
-          "tax_reduction_per_round": 100
-        },
-        "factory_impact": {
-          "installation_complexity": "high",
-          "infrastructure_required": true
-        },
-        "initial_cost": 600,
-        "maintenance_cost_per_round": 50,
-        "description": "Réduit la taxe carbone de manière significative, mais nécessite une infrastructure coûteuse.",
-        "metadata": {
-          "notes": "Représente une technologie de pointe avec des coûts initiaux et de maintenance élevés."
-        }
+      "factory_impact": {
+        "land_unusable_for_factories": true,
+        "land_required_per_terrain": 1
       },
-      {
-        "name": "Automatisation Modulaire",
-        "type": "Amélioration",
-        "money_impact": {
-          "revenue_generation_per_module_per_round": 50,
-          "worker_cost_reduction_per_module": 20
-        },
-        "factory_impact": {
-          "worker_reduction_per_module": 0.5, 
-          "productivity_increase_percentage": 10
-        },
-        "initial_cost_per_module": 150,
-        "maintenance_cost_per_module": 15,
-        "description": "Augmente la productivité et réduit le besoin en travailleurs par module.",
-        "metadata": {
-          "notes": "L'augmentation de productivité s'applique à la production de base de l'usine. La réduction des travailleurs est une estimation."
-        }
-      },
-      {
-        "name": "Mix Énergétique Renouvelable Hybride",
-        "type": "Amélioration",
-        "money_impact": {
-          "pollution_reduction_per_round": 100,
-          "energy_cost_savings_percentage":5
-        },
-        "factory_impact": {
-          "emission_reduction_percentage": 25
-        },
-        "initial_cost": 500,
-        "maintenance_cost_per_round": 50,
-        "description": "Réduit les émissions polluantes et les coûts énergétiques des usines.",
-        "metadata": {
-          "notes": "La réduction des émissions est une estimation basée sur l'utilisation d'énergies renouvelables."
-        }
-      },
-      {
-        "name": "Stockage d'Énergie Avancé",
-        "type": "Nouvelle Technologie",
-        "money_impact": {
-          "revenue_generation_per_round": 75
-        },
-        "factory_impact": {
-          "efficiency_improvement_renewable_percentage": 15
-        },
-        "initial_cost": 400,
-        "maintenance_cost_per_round": 25,
-        "description": "Améliore l'efficacité des usines utilisant de l'énergie renouvelable et génère des revenus supplémentaires.",
-        "metadata": {
-          "notes": "L'amélioration d'efficacité s'applique uniquement aux usines alimentées par des sources renouvelables."
-        }
-      },
-      {
-        "name": "Capture de Carbone Modulaire",
-        "type": "Amélioration",
-        "money_impact": {
-          "pollution_reduction_per_module_per_round": 50
-        },
-        "factory_impact": {
-          "module_installation_required": true
-        },
-        "initial_cost_per_module": 200,
-        "maintenance_cost_per_module": 15,
-        "description": "Réduit la pollution en capturant le carbone directement à la source dans les usines.",
-        "metadata": {
-          "notes": "Nécessite l'installation de modules de capture dans les usines existantes."
-        }
-      },
-      {
-        "name": "Cobots Adaptatifs",
-        "type": "Amélioration",
-        "money_impact": {
-          "revenue_generation_per_round": 60,
-          "worker_cost_reduction_per_round": 25
-        },
-        "factory_impact": {
-          "productivity_improvement_percentage": 15,
-          "worker_reduction_per_cobot": 0.7
-        },
-        "initial_cost": 250,
-        "maintenance_cost_per_round": 20,
-        "description": "Améliore la productivité des usines et réduit le besoin en travailleurs.",
-        "metadata": {
-          "notes": "Les cobots travaillent aux côtés des humains, augmentant l'efficacité globale."
-        }
-      },
-      {
-        "name": "Logistique Autonome et Optimisée",
-        "type": "Amélioration",
-        "money_impact": {
-          "transport_cost_reduction_per_round": 80,
-          "pollution_reduction_per_round": 50
-        },
-        "factory_impact": {
-          "logistics_efficiency_improvement_percentage": 20
-        },
-        "initial_cost": 600,
-        "maintenance_cost_per_round": 40,
-        "description": "Réduit les coûts de transport et la pollution, améliorant l'efficacité logistique.",
-        "metadata": {
-          "notes": "Utilise des véhicules autonomes et des algorithmes d'optimisation pour la logistique."
-        }
-      },
-      {
-        "name": "Transport Multimodal et Électrification",
-        "type": "Nouvelle Technologie",
-        "money_impact": {
-          "pollution_reduction_per_round": 100,
-          "transport_cost_reduction_per_round": 120
-        },
-        "factory_impact": {
-          "transport_optimization_percentage": 25
-        },
-        "initial_cost": 800,
-        "maintenance_cost_per_round": 50,
-        "description": "Optimise le transport de ressources et de produits finis en utilisant des modes de transport variés et l'électrification.",
-        "metadata": {
-          "notes": "Combine différents modes de transport (rail, route, fluvial) et utilise des véhicules électriques."
-        }
-      },
-      {
-        "name": "Recyclage",
-        "type": "Amélioration",
-        "money_impact": {
-          "revenue_generation_per_round": 100,
-          "pollution_reduction_per_round": 40,
-          "waste_reduction_percentage": 30
-        },
-        "factory_impact": {
-          "resource_recovery_percentage": 20
-        },
-        "initial_cost": 300,
-        "maintenance_cost_per_round": 15,
-        "description": "Valorise les sous-produits, réduit les déchets et génère des revenus supplémentaires.",
-        "metadata": {
-          "notes": "Le pourcentage de récupération des ressources indique la proportion de matériaux recyclables récupérés."
-        }
-      },
-      {
-        "name": "Impression 3D à la Demande",
-        "type": "Amélioration",
-        "money_impact": {
-          "production_cost_reduction_per_round": 50,
-          "waste_reduction_per_round": 30,
-          "inventory_cost_reduction_percentage": 15
-        },
-        "factory_impact": {
-          "storage_reduction_percentage": 20,
-          "production_flexibility_increase": 25 
-        },
-        "initial_cost": 200,
-        "maintenance_cost_per_round": 10,
-        "description": "Réduit les coûts de production, les déchets et le besoin de stockage, améliorant l'efficacité.",
-        "metadata": {
-          "notes": "Permet la production de pièces à la demande, réduisant ainsi les stocks et augmentant la flexibilité."
-        }
-      },
-      {
-        "name": "Contrats Verts et Chaînes d'Approvisionnement Durables",
-        "type": "Amélioration",
-        "money_impact": {
-          "resource_cost_reduction_percentage": 5,
-          "transport_cost_increase_percentage": 2,
-          "reputation_increase": 10
-        },
-        "factory_impact": {
-          "supplier_discount_percentage": 2,
-          "risk_reduction_factor": 0.05,
-          "ethical_sourcing_compliance": true
-        },
-        "initial_cost": 150,
-        "maintenance_cost": null,
-        "description": "Favorise des pratiques écologiques et responsables dans les achats et la logistique.",
-        "metadata": {
-          "notes": "Reputation increase is a value between 0-100, affecting public perception. Risk reduction factor multiplies the chance of regulatory penalties. Ethical sourcing compliance ensures adherence to labor and environmental standards."
-        }
+      "initial_cost": 250,
+      "maintenance_cost_per_terrain": 10,
+      "description": "Réduit la taxe carbone et génère des revenus par terrain planté. Bloque l'utilisation des terrains pour les usines.",
+      "metadata": {
+        "notes": "Les coûts initiaux incluent l'achat du terrain (200 EC) et la plantation (50 EC)."
       }
-    ]
-  }
+    },
+    {
+      "name": "Capture de Carbone par les Océans",
+      "type": "Nouvelle Technologie",
+      "money_impact": {
+        "tax_reduction_per_round": 100
+      },
+      "factory_impact": {
+        "installation_complexity": "high",
+        "infrastructure_required": true
+      },
+      "initial_cost": 600,
+      "maintenance_cost_per_round": 50,
+      "description": "Réduit la taxe carbone de manière significative, mais nécessite une infrastructure coûteuse.",
+      "metadata": {
+        "notes": "Représente une technologie de pointe avec des coûts initiaux et de maintenance élevés."
+      }
+    },
+    {
+      "name": "Automatisation Modulaire",
+      "type": "Amélioration",
+      "money_impact": {
+        "revenue_generation_per_module_per_round": 50,
+        "worker_cost_reduction_per_module": 20
+      },
+      "factory_impact": {
+        "worker_reduction_per_module": 0.5,
+        "productivity_increase_percentage": 10
+      },
+      "initial_cost_per_module": 150,
+      "maintenance_cost_per_module": 15,
+      "description": "Augmente la productivité et réduit le besoin en travailleurs par module.",
+      "metadata": {
+        "notes": "L'augmentation de productivité s'applique à la production de base de l'usine. La réduction des travailleurs est une estimation."
+      }
+    },
+    {
+      "name": "Mix Énergétique Renouvelable Hybride",
+      "type": "Amélioration",
+      "money_impact": {
+        "pollution_reduction_per_round": 100,
+        "energy_cost_savings_percentage": 5
+      },
+      "factory_impact": {
+        "emission_reduction_percentage": 25
+      },
+      "initial_cost": 500,
+      "maintenance_cost_per_round": 50,
+      "description": "Réduit les émissions polluantes et les coûts énergétiques des usines.",
+      "metadata": {
+        "notes": "La réduction des émissions est une estimation basée sur l'utilisation d'énergies renouvelables."
+      }
+    },
+    {
+      "name": "Stockage d'Énergie Avancé",
+      "type": "Nouvelle Technologie",
+      "money_impact": {
+        "revenue_generation_per_round": 75
+      },
+      "factory_impact": {
+        "efficiency_improvement_renewable_percentage": 15
+      },
+      "initial_cost": 400,
+      "maintenance_cost_per_round": 25,
+      "description": "Améliore l'efficacité des usines utilisant de l'énergie renouvelable et génère des revenus supplémentaires.",
+      "metadata": {
+        "notes": "L'amélioration d'efficacité s'applique uniquement aux usines alimentées par des sources renouvelables."
+      }
+    },
+    {
+      "name": "Capture de Carbone Modulaire",
+      "type": "Amélioration",
+      "money_impact": {
+        "pollution_reduction_per_module_per_round": 50
+      },
+      "factory_impact": {
+        "module_installation_required": true
+      },
+      "initial_cost_per_module": 200,
+      "maintenance_cost_per_module": 15,
+      "description": "Réduit la pollution en capturant le carbone directement à la source dans les usines.",
+      "metadata": {
+        "notes": "Nécessite l'installation de modules de capture dans les usines existantes."
+      }
+    },
+    {
+      "name": "Cobots Adaptatifs",
+      "type": "Amélioration",
+      "money_impact": {
+        "revenue_generation_per_round": 60,
+        "worker_cost_reduction_per_round": 25
+      },
+      "factory_impact": {
+        "productivity_improvement_percentage": 15,
+        "worker_reduction_per_cobot": 0.7
+      },
+      "initial_cost": 250,
+      "maintenance_cost_per_round": 20,
+      "description": "Améliore la productivité des usines et réduit le besoin en travailleurs.",
+      "metadata": {
+        "notes": "Les cobots travaillent aux côtés des humains, augmentant l'efficacité globale."
+      }
+    },
+    {
+      "name": "Logistique Autonome et Optimisée",
+      "type": "Amélioration",
+      "money_impact": {
+        "transport_cost_reduction_per_round": 80,
+        "pollution_reduction_per_round": 50
+      },
+      "factory_impact": {
+        "logistics_efficiency_improvement_percentage": 20
+      },
+      "initial_cost": 600,
+      "maintenance_cost_per_round": 40,
+      "description": "Réduit les coûts de transport et la pollution, améliorant l'efficacité logistique.",
+      "metadata": {
+        "notes": "Utilise des véhicules autonomes et des algorithmes d'optimisation pour la logistique."
+      }
+    },
+    {
+      "name": "Transport Multimodal et Électrification",
+      "type": "Nouvelle Technologie",
+      "money_impact": {
+        "pollution_reduction_per_round": 100,
+        "transport_cost_reduction_per_round": 120
+      },
+      "factory_impact": {
+        "transport_optimization_percentage": 25
+      },
+      "initial_cost": 800,
+      "maintenance_cost_per_round": 50,
+      "description": "Optimise le transport de ressources et de produits finis en utilisant des modes de transport variés et l'électrification.",
+      "metadata": {
+        "notes": "Combine différents modes de transport (rail, route, fluvial) et utilise des véhicules électriques."
+      }
+    },
+    {
+      "name": "Recyclage",
+      "type": "Amélioration",
+      "money_impact": {
+        "revenue_generation_per_round": 100,
+        "pollution_reduction_per_round": 40,
+        "waste_reduction_percentage": 30
+      },
+      "factory_impact": {
+        "resource_recovery_percentage": 20
+      },
+      "initial_cost": 300,
+      "maintenance_cost_per_round": 15,
+      "description": "Valorise les sous-produits, réduit les déchets et génère des revenus supplémentaires.",
+      "metadata": {
+        "notes": "Le pourcentage de récupération des ressources indique la proportion de matériaux recyclables récupérés."
+      }
+    },
+    {
+      "name": "Impression 3D à la Demande",
+      "type": "Amélioration",
+      "money_impact": {
+        "production_cost_reduction_per_round": 50,
+        "waste_reduction_per_round": 30,
+        "inventory_cost_reduction_percentage": 15
+      },
+      "factory_impact": {
+        "storage_reduction_percentage": 20,
+        "production_flexibility_increase": 25
+      },
+      "initial_cost": 200,
+      "maintenance_cost_per_round": 10,
+      "description": "Réduit les coûts de production, les déchets et le besoin de stockage, améliorant l'efficacité.",
+      "metadata": {
+        "notes": "Permet la production de pièces à la demande, réduisant ainsi les stocks et augmentant la flexibilité."
+      }
+    },
+    {
+      "name": "Contrats Verts et Chaînes d'Approvisionnement Durables",
+      "type": "Amélioration",
+      "money_impact": {
+        "resource_cost_reduction_percentage": 5,
+        "transport_cost_increase_percentage": 2,
+        "reputation_increase": 10
+      },
+      "factory_impact": {
+        "supplier_discount_percentage": 2,
+        "risk_reduction_factor": 0.05,
+        "ethical_sourcing_compliance": true
+      },
+      "initial_cost": 150,
+      "maintenance_cost": null,
+      "description": "Favorise des pratiques écologiques et responsables dans les achats et la logistique.",
+      "metadata": {
+        "notes": "Reputation increase is a value between 0-100, affecting public perception. Risk reduction factor multiplies the chance of regulatory penalties. Ethical sourcing compliance ensures adherence to labor and environmental standards."
+      }
+    }
+  ]
+}

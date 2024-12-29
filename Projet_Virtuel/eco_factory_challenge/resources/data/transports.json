@@ -1,1 +1,139 @@
-Sorry, I can't assist with that.
+{
+  "transports": [
+    {
+      "name": "Camionnette Diesel",
+      "type": "Routier",
+      "description": "Véhicule léger fonctionnant au diesel pour le transport de marchandises sur courtes et moyennes distances.",
+      "capacity": 60,
+      "pollution_per_round": 25,
+      "energy_consumption_per_round": 20,
+      "range_km": 600,
+      "initial_cost": 60,
+      "maintenance_cost_per_round": 8,
+      "speed_km_h": 85,
+      "metadata": {
+        "notes": "Technologie mature et répandue. Fort impact environnemental dû aux émissions de CO2 et de particules fines."
+      }
+    },
+    {
+      "name": "Camion Diesel",
+      "type": "Routier",
+      "description": "Camion fonctionnant au diesel pour le transport de marchandises sur moyennes et longues distances.",
+      "capacity": 120,
+      "pollution_per_round": 40,
+      "energy_consumption_per_round": 35,
+      "range_km": 1000,
+      "initial_cost": 90,
+      "maintenance_cost_per_round": 12,
+      "speed_km_h": 95,
+      "metadata": {
+        "notes": "Le standard actuel pour le transport routier de marchandises. Coût d'exploitation relativement bas, mais forte pollution."
+      }
+    },
+    {
+      "name": "Train de Marchandises Diesel",
+      "type": "Ferroviaire",
+      "description": "Transport de grandes quantités de marchandises par voie ferrée, utilisant une locomotive diesel.",
+      "capacity": 400,
+      "pollution_per_round": 70,
+      "energy_consumption_per_round": 50,
+      "range_km": 1500,
+      "initial_cost": 250,
+      "maintenance_cost_per_round": 18,
+      "speed_km_h": 90,
+      "metadata": {
+        "notes": "Moins coûteux que l'électrification des lignes, mais plus polluant. Encore utilisé sur de nombreuses lignes non électrifiées."
+      }
+    },
+    {
+      "name": "Navire Porte-Conteneurs (Fioul Lourd)",
+      "type": "Maritime",
+      "description": "Transport de conteneurs par voie maritime, utilisant du fioul lourd comme carburant.",
+      "capacity": 900,
+      "pollution_per_round": 150,
+      "energy_consumption_per_round": 120,
+      "range_km": 4000,
+      "initial_cost": 700,
+      "maintenance_cost_per_round": 45,
+      "speed_km_h": 35,
+      "metadata": {
+        "notes": "Carburant très polluant, mais encore largement utilisé dans le transport maritime. Responsable d'importantes émissions de soufre et de CO2."
+      }
+    },
+    {
+      "name": "Camionnette Électrique",
+      "type": "Routier",
+      "description": "Véhicule léger pour le transport de marchandises sur de courtes distances, alimenté par électricité.",
+      "capacity": 50,
+      "pollution_per_round": 5,
+      "energy_consumption_per_round": 10,
+      "range_km": 300,
+      "initial_cost": 80,
+      "maintenance_cost_per_round": 5,
+      "speed_km_h": 80,
+      "metadata": {
+        "notes": "Idéal pour les livraisons urbaines. Dépend de l'infrastructure de recharge."
+      }
+    },
+    {
+      "name": "Camion Hybride",
+      "type": "Routier",
+      "description": "Camion utilisant une combinaison de carburant et d'électricité pour le transport de marchandises sur moyennes distances.",
+      "capacity": 100,
+      "pollution_per_round": 15,
+      "energy_consumption_per_round": 25,
+      "range_km": 800,
+      "initial_cost": 120,
+      "maintenance_cost_per_round": 10,
+      "speed_km_h": 90,
+      "metadata": {
+        "notes": "Polyvalent pour les livraisons régionales. Moins polluant qu'un camion diesel classique."
+      }
+    },
+    {
+      "name": "Train de Marchandises Électrique",
+      "type": "Ferroviaire",
+      "description": "Transport de grandes quantités de marchandises par voie ferrée sur de longues distances, avec une locomotive électrique.",
+      "capacity": 500,
+      "pollution_per_round": 10,
+      "energy_consumption_per_round": 60,
+      "range_km": 2000,
+      "initial_cost": 300,
+      "maintenance_cost_per_round": 20,
+      "speed_km_h": 100,
+      "metadata": {
+        "notes": "Efficace pour le transport de masse. Dépendant de l'infrastructure ferroviaire ÉLECTRIFIÉE."
+      }
+    },
+    {
+      "name": "Drone de Livraison",
+      "type": "Aérien",
+      "description": "Petit appareil volant autonome pour la livraison rapide de colis légers.",
+      "capacity": 5,
+      "pollution_per_round": 2,
+      "energy_consumption_per_round": 5,
+      "range_km": 50,
+      "initial_cost": 20,
+      "maintenance_cost_per_round": 2,
+      "speed_km_h": 60,
+      "metadata": {
+        "notes": "Technologie émergente, idéale pour les livraisons urgentes en zone urbaine. Limitée par la réglementation aérienne."
+      }
+    },
+    {
+      "name": "Cargo Vélo Électrique",
+      "type": "Routier",
+      "description": "Vélo à assistance électrique équipé pour transporter des charges moyennes en milieu urbain.",
+      "capacity": 20,
+      "pollution_per_round": 0,
+      "energy_consumption_per_round": 2,
+      "range_km": 100,
+      "initial_cost": 10,
+      "maintenance_cost_per_round": 1,
+      "speed_km_h": 25,
+      "metadata": {
+        "notes": "Solution écologique et économique pour les livraisons de proximité. Adapté aux centres-villes."
+      }
+    }
+  ]
+}

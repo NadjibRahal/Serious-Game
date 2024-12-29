@@ -1,19 +1,124 @@
-eco_factory_challenge
-├── src
-│   ├── main.py
-│   ├── constants.py
-│   ├── game.py
-│   ├── player.py
-│   ├── card.py
-│   ├── board.py
-│   ├── ui.py
-│   └── utils.py
-├── resources
-│   ├── data
-│   │   ├── technologies.json
-│   │   ├── usines.json
-│   │   ├── ressources.json
-│   │   ├── travailleurs.json
-│   │   └── transports.json
-├── requirements.txt
-└── README.md
+{
+  "resources": [
+    {
+      "name": "Pétrole Brut",
+      "type": "Fossile",
+      "description": "Ressource fossile utilisée pour produire des carburants et des plastiques. Fort impact environnemental.",
+      "energy_per_unit": 100,
+      "pollution_per_unit": 50,
+      "initial_extraction_cost": 50,
+      "renewable": false,
+      "rarity": "Commun",
+      "current_stock": 1000,
+      "metadata": {
+        "units": "barils",
+        "notes": "Prix volatile, sujet aux fluctuations géopolitiques. Extraction de plus en plus coûteuse."
+      }
+    },
+    {
+      "name": "Gaz Naturel",
+      "type": "Fossile",
+      "description": "Ressource fossile utilisée pour le chauffage, la production d'électricité et comme carburant. Moins polluant que le pétrole.",
+      "energy_per_unit": 80,
+      "pollution_per_unit": 30,
+      "initial_extraction_cost": 40,
+      "renewable": false,
+      "rarity": "Commun",
+      "current_stock": 1500,
+      "metadata": {
+        "units": "mètres cubes",
+        "notes": "Souvent associé à l'extraction de pétrole. Transport par gazoducs ou liquéfaction."
+      }
+    },
+    {
+      "name": "Charbon",
+      "type": "Fossile",
+      "description": "Ressource fossile utilisée principalement pour la production d'électricité. Très polluant.",
+      "energy_per_unit": 60,
+      "pollution_per_unit": 70,
+      "initial_extraction_cost": 30,
+      "renewable": false,
+      "rarity": "Abondant",
+      "current_stock": 2000,
+      "metadata": {
+        "units": "tonnes",
+        "notes": "Ressource abondante mais responsable d'importantes émissions de CO2. Faible coût d'extraction."
+      }
+    },
+    {
+      "name": "Uranium",
+      "type": "Nucléaire",
+      "description": "Ressource utilisée comme combustible dans les centrales nucléaires. Production d'énergie puissante et stable.",
+      "energy_per_unit": 500,
+      "pollution_per_unit": 5,
+      "initial_extraction_cost": 80,
+      "renewable": false,
+      "rarity": "Rare",
+      "current_stock": 500,
+      "metadata": {
+        "units": "kilogrammes",
+        "notes": "Gestion des déchets radioactifs complexe. Risques liés à la sécurité des installations."
+      }
+    },
+    {
+      "name": "Biomasse",
+      "type": "Renouvelable",
+      "description": "Matière organique utilisée pour produire de la chaleur, de l'électricité ou des biocarburants.",
+      "energy_per_unit": 40,
+      "pollution_per_unit": 15,
+      "initial_extraction_cost": 20,
+      "renewable": true,
+      "rarity": "Abondant",
+      "current_stock": 3000,
+      "metadata": {
+        "units": "tonnes",
+        "notes": "Ressource renouvelable si gérée durablement. Peut entrer en compétition avec l'usage alimentaire des terres."
+      }
+    },
+    {
+      "name": "Énergie Solaire",
+      "type": "Renouvelable",
+      "description": "Énergie captée à partir du rayonnement solaire, convertie en électricité via des panneaux photovoltaïques.",
+      "energy_per_unit": 25,
+      "pollution_per_unit": 0,
+      "initial_extraction_cost": 60,
+      "renewable": true,
+      "rarity": "Inépuisable",
+      "current_stock": null,
+      "metadata": {
+        "units": "MWh",
+        "notes": "Production intermittente, dépendante de l'ensoleillement. Coût initial élevé, mais faible coût de fonctionnement. Stock : null car il s'agit d'un flux"
+      }
+    },
+    {
+      "name": "Énergie Éolienne",
+      "type": "Renouvelable",
+      "description": "Énergie captée à partir de la force du vent, convertie en électricité via des éoliennes.",
+      "energy_per_unit": 30,
+      "pollution_per_unit": 0,
+      "initial_extraction_cost": 70,
+      "renewable": true,
+      "rarity": "Inépuisable",
+      "current_stock": null,
+      "metadata": {
+        "units": "MWh",
+        "notes": "Production intermittente, dépendante de la force du vent. Impact visuel et sonore parfois critiqué. Stock : null car il s'agit d'un flux."
+      }
+    },
+    {
+      "name": "Énergie Hydraulique",
+      "type": "Renouvelable",
+      "description": "Énergie produite par la force de l'eau, généralement à l'aide de barrages et de turbines.",
+      "energy_per_unit": 35,
+      "pollution_per_unit": 2,
+      "initial_extraction_cost": 90,
+      "renewable": true,
+      "rarity": "Limité",
+      "current_stock": null,
+      "metadata": {
+        "units": "MWh",
+        "notes": "Production stable et pilotable. Impact sur les écosystèmes aquatiques. Dépend de la disponibilité de sites adaptés. Stock : null car il s'agit d'un flux."
+      }
+    }
+  ]
+}

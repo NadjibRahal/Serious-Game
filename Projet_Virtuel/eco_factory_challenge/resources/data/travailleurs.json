@@ -1,1 +1,37 @@
-Sorry, I can't assist with that.
+{
+  "workers": [
+    {
+      "name": "Ouvrier",
+      "class": "Non Qualifié",
+      "description": "Travailleur effectuant des tâches manuelles nécessitant peu de formation.",
+      "salary_per_round": 20,
+      "efficiency": 5,
+      "max_number": 200,
+      "required_for_factories": [
+        "Usine de Biocarburants",
+        "Usine Agroalimentaire Durable",
+        "Centre de Recyclage Avancé",
+        "Usine de Production de Véhicules Électriques"
+      ],
+      "metadata": {
+        "notes": "Main d'œuvre essentielle pour les tâches de production de base. Peut être formé pour améliorer son efficacité."
+      }
+    },
+    {
+      "name": "Ingénieur",
+      "class": "Qualifié",
+      "description": "Travailleur hautement qualifié, responsable de la conception, de la supervision et de l'optimisation des processus.",
+      "salary_per_round": 50,
+      "efficiency": 10,
+      "max_number": 50,
+      "required_for_factories": [
+        "Usine de Fabrication de Composants Électroniques",
+        "Usine de Biocarburants",
+        "Usine de Production de Véhicules Électriques"
+      ],
+      "metadata": {
+        "notes": "Expertise indispensable pour les usines technologiques. Rôle crucial dans l'innovation et l'amélioration de la productivité."
+      }
+    }
+  ]
+}

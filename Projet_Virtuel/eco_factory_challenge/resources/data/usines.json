@@ -1,99 +1,119 @@
 {
-    "factories": [
-      {
-        "name": "Usine de Biocarburants",
-        "type": "Renouvelable",
-        "description": "Produit des biocarburants à partir de matières organiques, réduisant la dépendance aux énergies fossiles.",
-        "base_production": 80,
-        "pollution_per_round": 20,
-        "energy_consumption_per_round": 50,
-        "water_consumption_per_round": 30,
-        "initial_cost": 500,
-        "maintenance_cost_per_round": 40,
-        "required_terrain": 2,
-        "workforce_required": 30,
-        "metadata": {
-          "product": "biocarburant",
-          "efficiency_increase_with_tech": ["Stockage d'Énergie Avancé"],
-          "pollution_reduction_with_tech": ["Capture de Carbone Modulaire"],
-          "notes": "L'efficacité peut être augmentée avec certaines technologies. Sensible aux variations de prix des matières premières."
-        }
-      },
-      {
-        "name": "Usine de Fabrication de Composants Électroniques",
-        "type": "Technologique",
-        "description": "Produit des composants électroniques essentiels pour diverses industries.",
-        "base_production": 60,
-        "pollution_per_round": 60,
-        "energy_consumption_per_round": 80,
-        "water_consumption_per_round": 50,
-        "initial_cost": 800,
-        "maintenance_cost_per_round": 70,
-        "required_terrain": 3,
-        "workforce_required": 50,
-        "metadata": {
-          "product": "composants électroniques",
-          "efficiency_increase_with_tech": ["Automatisation Modulaire", "Cobots Adaptatifs"],
-          "pollution_reduction_with_tech": ["Mix Énergétique Renouvelable Hybride"],
-          "notes": "Forte demande en énergie. La production peut être optimisée par l'automatisation."
-        }
-      },
-      {
-        "name": "Centre de Recyclage Avancé",
-        "type": "Recyclage",
-        "description": "Transforme les déchets en ressources réutilisables, contribuant à une économie circulaire.",
-        "base_production": 70,
-        "pollution_per_round": 30,
-        "energy_consumption_per_round": 40,
-        "water_consumption_per_round": 20,
-        "initial_cost": 350,
-        "maintenance_cost_per_round": 25,
-        "required_terrain": 1,
-        "workforce_required": 20,
-        "metadata": {
-          "product": "matériaux recyclés",
-          "efficiency_increase_with_tech": ["Recyclage", "Automatisation Modulaire"],
-          "pollution_reduction_with_tech": ["Capture de Carbone Modulaire"],
-          "notes": "Réduit les besoins en extraction de ressources primaires. Sensible aux politiques de gestion des déchets."
-        }
-      },
-      {
-        "name": "Usine Agroalimentaire Durable",
-        "type": "Agroalimentaire",
-        "description": "Produit des denrées alimentaires en utilisant des pratiques agricoles durables et respectueuses de l'environnement.",
-        "base_production": 90,
-        "pollution_per_round": 40,
-        "energy_consumption_per_round": 60,
-        "water_consumption_per_round": 70,
-        "initial_cost": 400,
-        "maintenance_cost_per_round": 35,
-        "required_terrain": 4,
-        "workforce_required": 40,
-        "metadata": {
-          "product": "denrées alimentaires",
-          "efficiency_increase_with_tech": ["Contrats Verts et Chaînes d'Approvisionnement Durables"],
-          "pollution_reduction_with_tech": ["Mix Énergétique Renouvelable Hybride", "Recyclage (déchets organiques)"],
-          "notes": "Utilise des techniques agricoles réduisant l'impact environnemental. Sensible aux conditions climatiques."
-        }
-      },
-      {
-        "name": "Usine de Production de Véhicules Électriques",
-        "type": "Transport",
-        "description": "Fabrique des véhicules électriques, contribuant à la réduction des émissions de gaz à effet de serre.",
-        "base_production": 50,
-        "pollution_per_round": 50,
-        "energy_consumption_per_round": 70,
-        "water_consumption_per_round": 40,
-        "initial_cost": 900,
-        "maintenance_cost_per_round": 80,
-        "required_terrain": 3,
-        "workforce_required": 60,
-        "metadata": {
-          "product": "véhicules électriques",
-          "efficiency_increase_with_tech": ["Automatisation Modulaire", "Cobots Adaptatifs", "Impression 3D à la Demande"],
-          "pollution_reduction_with_tech": ["Mix Énergétique Renouvelable Hybride", "Capture de Carbone Modulaire"],
-          "notes": "Forte demande en énergie et en matériaux spécifiques. Liée aux avancées technologiques dans le domaine des batteries."
-        }
+  "factories": [
+    {
+      "name": "Usine de Biocarburants",
+      "type": "Renouvelable",
+      "description": "Produit des biocarburants à partir de matières organiques, réduisant la dépendance aux énergies fossiles.",
+      "base_production": 80,
+      "pollution_per_round": 20,
+      "energy_consumption_per_round": 50,
+      "water_consumption_per_round": 30,
+      "initial_cost": 500,
+      "maintenance_cost_per_round": 40,
+      "required_terrain": 2,
+      "workforce_required": 30,
+      "metadata": {
+        "product": "biocarburant",
+        "efficiency_increase_with_tech": ["Stockage d'Énergie Avancé"],
+        "pollution_reduction_with_tech": ["Capture de Carbone Modulaire"],
+        "notes": "L'efficacité peut être augmentée avec certaines technologies. Sensible aux variations de prix des matières premières."
       }
-    ]
-  }
+    },
+    {
+      "name": "Usine de Fabrication de Composants Électroniques",
+      "type": "Technologique",
+      "description": "Produit des composants électroniques essentiels pour diverses industries.",
+      "base_production": 60,
+      "pollution_per_round": 60,
+      "energy_consumption_per_round": 80,
+      "water_consumption_per_round": 50,
+      "initial_cost": 800,
+      "maintenance_cost_per_round": 70,
+      "required_terrain": 3,
+      "workforce_required": 50,
+      "metadata": {
+        "product": "composants électroniques",
+        "efficiency_increase_with_tech": [
+          "Automatisation Modulaire",
+          "Cobots Adaptatifs"
+        ],
+        "pollution_reduction_with_tech": [
+          "Mix Énergétique Renouvelable Hybride"
+        ],
+        "notes": "Forte demande en énergie. La production peut être optimisée par l'automatisation."
+      }
+    },
+    {
+      "name": "Centre de Recyclage Avancé",
+      "type": "Recyclage",
+      "description": "Transforme les déchets en ressources réutilisables, contribuant à une économie circulaire.",
+      "base_production": 70,
+      "pollution_per_round": 30,
+      "energy_consumption_per_round": 40,
+      "water_consumption_per_round": 20,
+      "initial_cost": 350,
+      "maintenance_cost_per_round": 25,
+      "required_terrain": 1,
+      "workforce_required": 20,
+      "metadata": {
+        "product": "matériaux recyclés",
+        "efficiency_increase_with_tech": [
+          "Recyclage",
+          "Automatisation Modulaire"
+        ],
+        "pollution_reduction_with_tech": ["Capture de Carbone Modulaire"],
+        "notes": "Réduit les besoins en extraction de ressources primaires. Sensible aux politiques de gestion des déchets."
+      }
+    },
+    {
+      "name": "Usine Agroalimentaire Durable",
+      "type": "Agroalimentaire",
+      "description": "Produit des denrées alimentaires en utilisant des pratiques agricoles durables et respectueuses de l'environnement.",
+      "base_production": 90,
+      "pollution_per_round": 40,
+      "energy_consumption_per_round": 60,
+      "water_consumption_per_round": 70,
+      "initial_cost": 400,
+      "maintenance_cost_per_round": 35,
+      "required_terrain": 4,
+      "workforce_required": 40,
+      "metadata": {
+        "product": "denrées alimentaires",
+        "efficiency_increase_with_tech": [
+          "Contrats Verts et Chaînes d'Approvisionnement Durables"
+        ],
+        "pollution_reduction_with_tech": [
+          "Mix Énergétique Renouvelable Hybride",
+          "Recyclage (déchets organiques)"
+        ],
+        "notes": "Utilise des techniques agricoles réduisant l'impact environnemental. Sensible aux conditions climatiques."
+      }
+    },
+    {
+      "name": "Usine de Production de Véhicules Électriques",
+      "type": "Transport",
+      "description": "Fabrique des véhicules électriques, contribuant à la réduction des émissions de gaz à effet de serre.",
+      "base_production": 50,
+      "pollution_per_round": 50,
+      "energy_consumption_per_round": 70,
+      "water_consumption_per_round": 40,
+      "initial_cost": 900,
+      "maintenance_cost_per_round": 80,
+      "required_terrain": 3,
+      "workforce_required": 60,
+      "metadata": {
+        "product": "véhicules électriques",
+        "efficiency_increase_with_tech": [
+          "Automatisation Modulaire",
+          "Cobots Adaptatifs",
+          "Impression 3D à la Demande"
+        ],
+        "pollution_reduction_with_tech": [
+          "Mix Énergétique Renouvelable Hybride",
+          "Capture de Carbone Modulaire"
+        ],
+        "notes": "Forte demande en énergie et en matériaux spécifiques. Liée aux avancées technologiques dans le domaine des batteries."
+      }
+    }
+  ]
+}

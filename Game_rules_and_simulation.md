@@ -1,4 +1,3 @@
----
 ## 1. COMPLETE GAME RULES
 
 ### 1.1 Game Overview

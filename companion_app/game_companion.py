@@ -507,6 +507,7 @@ class CompanionApp(tk.Tk):
 
         ttk.Button(btn_frame, text="Add Factory", command=self.add_factory_dialog).pack(pady=5)
         ttk.Button(btn_frame, text="Remove Factory", command=self.remove_factory).pack(pady=5)
+        ttk.Button(btn_frame, text="Refresh Factories", command=self.refresh_factories).pack(pady=5)
 
     def create_technologies_tab(self):
         frame = ttk.Frame(self.technologies_tab)
@@ -739,7 +740,12 @@ class CompanionApp(tk.Tk):
                 distance = trans['distance']
                 transport_info = next((t for t in self.transportation_types if t['type'] == trans_type), None)
                 if transport_info:
-                    total_pollution += transport_info['pollution_per_distance'] * distance
+                    pollution = transport_info['pollution_per_distance'] * distance
+                    # Check for technology effects that reduce pollution
+                    for tech in self.selected_player.technologies:
+                        if "Reduce transportation pollution by 50%" in tech.effect and trans_type == "Electric":
+                            pollution = pollution // 2
+                    total_pollution += pollution
         # Apply pollution reductions from technologies
         for tech in self.selected_player.technologies:
             if "pollution" in tech.effect.lower():
@@ -776,7 +782,12 @@ class CompanionApp(tk.Tk):
                 distance = trans['distance']
                 transport_info = next((t for t in self.transportation_types if t['type'] == trans_type), None)
                 if transport_info:
-                    transportation_cost += transport_info['cost_per_distance'] * distance
+                    cost = transport_info['cost_per_distance'] * distance
+                    # Check for technology effects that reduce transportation costs
+                    for tech in self.selected_player.technologies:
+                        if "Reduce Fossil Fuel transportation costs by 10 EC per distance unit." in tech.effect and trans_type == "Fossil Fuel":
+                            cost = max(cost - 10 * distance, 0)
+                    transportation_cost += cost
 
         # Total expenses
         total_expenses = carbon_tax + total_salary + total_maintenance + transportation_cost
@@ -834,18 +845,20 @@ class CompanionApp(tk.Tk):
             messagebox.showerror("Error", "No terrain tile selected.")
             return
 
+        selected = self.terrain_tree.item(selected_items[0])
+        terrain_id = int(selected['values'][0]) -1
+        terrain = self.game_state.terrain_tiles[terrain_id]
+
+        if terrain.owned_by:
+            messagebox.showerror("Error", "Terrain tile already owned.")
+            return
+
+        if self.selected_player.ec < terrain.purchase_cost:
+            messagebox.showerror("Error", "Insufficient Eco-Credits to purchase this terrain.")
+            return
+
         def confirm_purchase():
             try:
-                selected = self.terrain_tree.item(selected_items[0])
-                terrain_id = int(selected['values'][0]) -1
-                terrain = self.game_state.terrain_tiles[terrain_id]
-                if terrain.owned_by:
-                    messagebox.showerror("Error", "Terrain tile already owned.")
-                    return
-                if self.selected_player.ec < terrain.purchase_cost:
-                    messagebox.showerror("Error", "Insufficient Eco-Credits to purchase this terrain.")
-                    return
-                # Deduct cost and assign ownership
                 self.selected_player.ec -= terrain.purchase_cost
                 terrain.owned_by = self.selected_player.name
                 self.refresh_terrain()
@@ -858,10 +871,6 @@ class CompanionApp(tk.Tk):
         purchase_window = tk.Toplevel(self)
         purchase_window.title("Confirm Purchase")
         purchase_window.geometry("400x200")
-
-        selected = self.terrain_tree.item(selected_items[0])
-        terrain_id = int(selected['values'][0]) -1
-        terrain = self.game_state.terrain_tiles[terrain_id]
 
         info = (
             f"Terrain ID: {terrain_id +1}\n"
@@ -886,28 +895,30 @@ class CompanionApp(tk.Tk):
 
         add_window = tk.Toplevel(self)
         add_window.title("Add Factory")
-        add_window.geometry("500x500")
+        add_window.geometry("600x600")
 
-        ttk.Label(add_window, text="Select Factory Type:").grid(row=0, column=0, padx=10, pady=5, sticky=tk.W)
+        ttk.Label(add_window, text="Select Factory Type:").grid(row=0, column=0, padx=10, pady=10, sticky=tk.W)
         factory_type_var = tk.StringVar()
         factory_types = [factory.name for factory in self.factories_list]
         factory_dropdown = ttk.Combobox(add_window, textvariable=factory_type_var, state="readonly")
         factory_dropdown['values'] = factory_types
-        factory_dropdown.grid(row=0, column=1, padx=10, pady=5, sticky=tk.W)
+        factory_dropdown.grid(row=0, column=1, padx=10, pady=10, sticky=tk.W)
 
-        ttk.Label(add_window, text="Select Terrain Tile:").grid(row=1, column=0, padx=10, pady=5, sticky=tk.W)
+        ttk.Label(add_window, text="Select Terrain Tile:").grid(row=1, column=0, padx=10, pady=10, sticky=tk.W)
         terrain_var = tk.StringVar()
         owned_tiles = [f"{i+1}. {tile.terrain_type}" for i, tile in enumerate(self.game_state.terrain_tiles) if tile.owned_by == self.selected_player.name]
+        if not owned_tiles:
+            owned_tiles = ["No owned terrain tiles available."]
         terrain_dropdown = ttk.Combobox(add_window, textvariable=terrain_var, state="readonly")
         terrain_dropdown['values'] = owned_tiles
-        terrain_dropdown.grid(row=1, column=1, padx=10, pady=5, sticky=tk.W)
+        terrain_dropdown.grid(row=1, column=1, padx=10, pady=10, sticky=tk.W)
 
-        ttk.Label(add_window, text="Select Transportation Type for Each Resource Needed:").grid(row=2, column=0, padx=10, pady=5, sticky=tk.W)
+        ttk.Label(add_window, text="Select Transportation Type for Each Resource Needed:").grid(row=2, column=0, padx=10, pady=10, sticky=tk.W)
 
-        # Placeholder for transportation selections
         transportation_frames = []
 
-        def update_transportation_fields(factory_type):
+        def update_transportation_fields(event):
+            factory_type = factory_type_var.get()
             for frame in transportation_frames:
                 frame.destroy()
             transportation_frames.clear()
@@ -922,13 +933,13 @@ class CompanionApp(tk.Tk):
                     trans_dropdown.grid(row=3 + idx*2, column=1, padx=10, pady=5, sticky=tk.W)
                     transportation_frames.append(trans_dropdown)
 
-        factory_dropdown.bind("<<ComboboxSelected>>", lambda event: update_transportation_fields(factory_type_var.get()))
+        factory_dropdown.bind("<<ComboboxSelected>>", update_transportation_fields)
 
         ttk.Button(add_window, text="Add Factory", command=lambda: self.add_factory(factory_type_var.get(), terrain_var.get(), transportation_frames, add_window)).grid(row=100, column=0, columnspan=2, pady=20)
 
     def add_factory(self, factory_name: str, terrain_selection: str, transportation_frames: List[ttk.Combobox], window):
-        if not factory_name or not terrain_selection:
-            messagebox.showerror("Error", "Please select both factory type and terrain.")
+        if not factory_name or not terrain_selection or terrain_selection == "No owned terrain tiles available.":
+            messagebox.showerror("Error", "Please select both factory type and a valid terrain.")
             return
         factory = next((f for f in self.factories_list if f.name == factory_name), None)
         if not factory:
@@ -965,9 +976,73 @@ class CompanionApp(tk.Tk):
                 # Find nearest terrain tile with the resource
                 distance, source_tile_index = self.find_nearest_resource(terrain_id, res)
                 if source_tile_index is None:
-                    messagebox.showerror("Error", f"No terrain tile owned by player has the required resource: {res}.")
-                    return
-                new_factory.transportation[res] = {"type": trans_type, "distance": distance}
+                    # Prompt user to purchase a terrain tile that provides the missing resource
+                    proceed = messagebox.askyesno("Resource Missing", 
+                        f"You do not own any terrain tile with the required resource: {res}.\n"
+                        f"Do you want to purchase a terrain tile that provides {res}?")
+                    if proceed:
+                        # Open terrain purchase dialog filtered by resource
+                        available_terrain = [f"{i+1}. {tile.terrain_type}" for i, tile in enumerate(self.game_state.terrain_tiles) 
+                                             if tile.owned_by is None and res in tile.resources]
+                        if not available_terrain:
+                            messagebox.showerror("Error", f"No available terrain tiles provide the required resource: {res}.")
+                            # Refund factory construction cost
+                            self.selected_player.ec += new_factory.construction_cost
+                            return
+                        purchase_window = tk.Toplevel(self)
+                        purchase_window.title(f"Purchase Terrain for {res}")
+                        purchase_window.geometry("500x300")
+
+                        ttk.Label(purchase_window, text=f"Select Terrain Tile that provides {res}:").pack(padx=10, pady=10)
+                        terrain_var = tk.StringVar()
+                        terrain_dropdown = ttk.Combobox(purchase_window, textvariable=terrain_var, state="readonly")
+                        terrain_dropdown['values'] = available_terrain
+                        terrain_dropdown.pack(padx=10, pady=10)
+
+                        def confirm_purchase():
+                            selected = terrain_dropdown.get()
+                            if not selected:
+                                messagebox.showerror("Error", "Please select a terrain tile.")
+                                return
+                            selected_id = int(selected.split('.')[0]) -1
+                            terrain_tile = self.game_state.terrain_tiles[selected_id]
+                            if self.selected_player.ec < terrain_tile.purchase_cost:
+                                messagebox.showerror("Error", "Insufficient Eco-Credits to purchase this terrain.")
+                                return
+                            self.selected_player.ec -= terrain_tile.purchase_cost
+                            terrain_tile.owned_by = self.selected_player.name
+                            self.refresh_terrain()
+                            purchase_window.destroy()
+                            # After purchasing, re-attempt to find the resource
+                            distance_new, source_tile_index_new = self.find_nearest_resource(terrain_id, res)
+                            if source_tile_index_new is not None:
+                                new_factory.transportation[res] = {"type": trans_type, "distance": distance_new}
+                                self.refresh_tabs()
+                            else:
+                                messagebox.showerror("Error", f"Failed to acquire the required resource: {res}.")
+                                # Refund factory construction cost
+                                self.selected_player.ec += new_factory.construction_cost
+                                return
+
+                        ttk.Button(purchase_window, text="Purchase", command=confirm_purchase).pack(pady=10)
+                        ttk.Button(purchase_window, text="Cancel", command=purchase_window.destroy).pack()
+                        self.wait_window(purchase_window)
+                        # After purchase, check if resource is now available
+                        distance_new, source_tile_index_new = self.find_nearest_resource(terrain_id, res)
+                        if source_tile_index_new is not None:
+                            new_factory.transportation[res] = {"type": trans_type, "distance": distance_new}
+                        else:
+                            messagebox.showerror("Error", f"Resource {res} still not available.")
+                            # Refund factory construction cost
+                            self.selected_player.ec += new_factory.construction_cost
+                            return
+                    else:
+                        messagebox.showerror("Error", f"Cannot add factory without required resource: {res}.")
+                        # Refund factory construction cost
+                        self.selected_player.ec += new_factory.construction_cost
+                        return
+                else:
+                    new_factory.transportation[res] = {"type": trans_type, "distance": distance}
 
         # Assign workers based on requirements
         for role, count in new_factory.workers_required.items():
@@ -1030,12 +1105,12 @@ class CompanionApp(tk.Tk):
         add_window.title("Purchase Technology")
         add_window.geometry("600x400")
 
-        ttk.Label(add_window, text="Select Technology:").grid(row=0, column=0, padx=10, pady=5, sticky=tk.W)
+        ttk.Label(add_window, text="Select Technology:").grid(row=0, column=0, padx=10, pady=10, sticky=tk.W)
         tech_type_var = tk.StringVar()
         tech_names = [tech.name for tech in self.technologies_list]
         tech_dropdown = ttk.Combobox(add_window, textvariable=tech_type_var, state="readonly")
         tech_dropdown['values'] = tech_names
-        tech_dropdown.grid(row=0, column=1, padx=10, pady=5, sticky=tk.W)
+        tech_dropdown.grid(row=0, column=1, padx=10, pady=10, sticky=tk.W)
 
         # Display selected technology details
         tech_details = tk.Text(add_window, width=60, height=15, wrap='word')
@@ -1058,7 +1133,7 @@ class CompanionApp(tk.Tk):
 
         tech_dropdown.bind("<<ComboboxSelected>>", display_tech_details)
 
-        ttk.Button(add_window, text="Purchase", command=lambda: self.purchase_technology(tech_type_var.get(), add_window)).grid(row=2, column=0, columnspan=2, pady=10)
+        ttk.Button(add_window, text="Purchase", command=lambda: self.purchase_technology(tech_type_var.get(), add_window)).grid(row=2, column=0, columnspan=2, pady=20)
 
     def purchase_technology(self, tech_name: str, window):
         if not tech_name:
@@ -1234,6 +1309,7 @@ class CompanionApp(tk.Tk):
             messagebox.showerror("Error", "No worker selected.")
             return
         worker_role = self.worker_tree.item(selected_item, 'values')[0]
+        # Find the first worker with the selected role
         worker = next((w for w in self.selected_player.workers if w.role == worker_role), None)
         if worker:
             # Remove worker from any factories
@@ -1251,7 +1327,7 @@ class CompanionApp(tk.Tk):
 
     # ---------------------- Technology Management ----------------------
 
-    # Already implemented in the factories section
+    # Already implemented above
 
     # ---------------------- Resource Management ----------------------
 
@@ -1349,7 +1425,12 @@ class CompanionApp(tk.Tk):
                 distance = trans['distance']
                 transport_info = next((t for t in self.transportation_types if t['type'] == trans_type), None)
                 if transport_info:
-                    transportation_cost += transport_info['cost_per_distance'] * distance
+                    cost = transport_info['cost_per_distance'] * distance
+                    # Check for technology effects that reduce transportation costs
+                    for tech in self.selected_player.technologies:
+                        if "Reduce Fossil Fuel transportation costs by 10 EC per distance unit." in tech.effect and trans_type == "Fossil Fuel":
+                            cost = max(cost - 10 * distance, 0)
+                    transportation_cost += cost
 
         # Total expenses
         total_expenses = carbon_tax + total_salary + total_maintenance + transportation_cost
@@ -1395,11 +1476,7 @@ class CompanionApp(tk.Tk):
                             f"\n\nWinner: {winner[0]} with a score of {winner[1]:.2f}!")
         self.destroy()
 
-    # ---------------------- Terrain Management ----------------------
-
-    # Already implemented above
-
-    # ---------------------- Main Execution ----------------------
+# ---------------------- Main Execution ----------------------
 
 def main():
     game_state = GameState()

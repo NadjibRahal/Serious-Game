@@ -1,598 +1,752 @@
+#!/usr/bin/env python3
+"""
+Eco-Factory Challenge (Companion App) - Revised Version with Drop-Down Menus
+Author: YourName
+Description:
+    A Tkinter-based GUI application for 4 players in the Eco-Factory Challenge.
+    Instead of free-form text, the user selects actions from drop-down menus:
+      - Buy Terrain
+      - Buy Resource
+      - Buy Factory
+      - Buy Technology
+      - Buy Worker
+      - Add Transportation
+
+    For each action type, a secondary drop-down menu appears, letting the user
+    pick specific options (e.g., which terrain, which resource, which factory).
+    For transportation, the user picks Hydrocarbon or Electric and enters distance.
+    The app auto-calculates cost in EC and pollution, then applies changes to the
+    selected player's data.
+
+Features:
+    - 4 Player frames with money, pollution, resources, factories, tech, workers
+    - Round system with Next Round button to consume resources & produce EC
+    - Save/Load game session to JSON
+    - Undo last action
+    - End game computing final ratio = capital / (1 + pollution)
+"""
+
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import messagebox, filedialog
+import json
+import os
 
-########################################################################
-# 1. DATA DEFINITIONS
-########################################################################
+################################################################################
+# DATA DEFINITIONS
+################################################################################
 
-# We define a simplified set of Factories, Technologies, Workers, etc.
-# You can expand these dictionaries to include all from your ruleset.
+# Terrains (20 total) with example prices:
+# We can treat them like a grid or just name them T1..T20. 
+# A real approach might store which player owns which, etc.
+# For demonstration, we only track cost here; the user picks one to buy.
+TERRAINS = {
+    "T1": 200,
+    "T2": 250,
+    "T3": 300,
+    "T4": 350,
+    "T5": 200,
+    "T6": 250,
+    "T7": 300,
+    "T8": 350,
+    "T9": 200,
+    "T10": 250,
+    "T11": 300,
+    "T12": 350,
+    "T13": 200,
+    "T14": 250,
+    "T15": 300,
+    "T16": 350,
+    "T17": 200,
+    "T18": 250,
+    "T19": 300,
+    "T20": 350,
+}
 
+# Resources
+RESOURCES = {
+    "Bois": 20,      # sample cost to buy 1 unit of Bois
+    "Eau": 15,       # cost for 1 unit of Eau
+    "Carbone": 30,   # cost for 1 unit of Carbone
+    "PierreFer": 40, # cost for 1 unit of Pierre + Fer
+    "Petrole": 50,   # cost for 1 unit of Petrole
+}
+
+# Factories
 FACTORIES = {
-    "Timber Logging Camp": {
-        "construction_cost": 150,
-        "operational_cost": 20,
-        "base_pollution": 3,
-        "output_type": "Timber",
-        "output_per_round": 2,
-        "terrain_requirement": ["Forest"],  # Example requirement
+    "AgroVerde": {
+        "cost": 200,
+        "pollution_per_round": 1,
+        "min_workers": 2,
+        "max_workers": 4,
+        "income_per_round": 100,
+        "resource_requirements": {"Bois": 1, "Eau": 1},
+        "max_owned_per_player": 4
     },
-    "Crop Farm": {
-        "construction_cost": 200,
-        "operational_cost": 25,
-        "base_pollution": 2,
-        "output_type": "Agriculture",
-        "output_per_round": 3,
-        "terrain_requirement": ["Plains", "Coastal"], 
+    "AutoTech": {
+        "cost": 500,
+        "pollution_per_round": 4,
+        "min_workers": 6,
+        "max_workers": 10,
+        "income_per_round": 250,
+        "resource_requirements": {"PierreFer": 2, "Petrole": 1},
+        "max_owned_per_player": 3
     },
-    "Mine & Smelter": {
-        "construction_cost": 300,
-        "operational_cost": 40,
-        "base_pollution": 8,
-        "output_type": "Mineral",
-        "output_per_round": 2,
-        "terrain_requirement": ["Mountain"],
+    "Elektronix": {
+        "cost": 350,
+        "pollution_per_round": 3,
+        "min_workers": 5,
+        "max_workers": 8,
+        "income_per_round": 200,
+        "resource_requirements": {"Carbone": 1, "Petrole": 2},
+        "max_owned_per_player": 5
     },
-    "Bioplastics Plant": {
-        "construction_cost": 250,
-        "operational_cost": 30,
-        "base_pollution": 5,
-        "output_type": "Bioplastics",
-        "output_per_round": 2,
-        "input_needed": ["Timber", "Agriculture"], 
-    },
-    "Urban Manufacturing Plant": {
-        "construction_cost": 300,
-        "operational_cost": 35,
-        "base_pollution": 6,
-        "output_type": "ManufacturedGoods",
-        "output_per_round": 2,  # requires Minerals or Recycled
-        "terrain_requirement": ["Urban"],
+    "EcoCycle": {
+        "cost": 300,
+        "pollution_per_round": 2,
+        "min_workers": 4,
+        "max_workers": 6,
+        "income_per_round": 150,
+        "resource_requirements": {"Carbone": 1, "PierreFer": 1},
+        "max_owned_per_player": 6
     },
 }
 
+# Technologies
 TECHNOLOGIES = {
     "Solar-Wind Hybrid Array": {
         "cost": 250,
         "maintenance": 20,
-        "pollution_reduction": 3,   # applies to a single factory
-        "op_cost_reduction": 10,   # reduces operational cost 
+        "pollution_mod": -3,  # Reduces one factory’s pollution by 3
+        "note": "Reduces factory operational cost by 10 EC/round"
     },
     "Advanced Automation Module": {
         "cost": 200,
         "maintenance": 15,
-        "production_bonus_percent": 20,  # +20% production
+        "pollution_mod": 0,   # no direct pollution effect
+        "note": "+20% production, needs Engineer"
     },
     "Carbon Capture System": {
         "cost": 250,
         "maintenance": 20,
-        "pollution_reduction": 6,  # drastically cuts pollution
+        "pollution_mod": -6,
+        "note": "Requires Env Advisor"
+    },
+    "Bioplastic Synthesis Upgrade": {
+        "cost": 200,
+        "maintenance": 10,
+        "pollution_mod": 0,
+        "note": "+10 EC per product sold from that factory"
     },
     "Industrial Recycling Unit": {
         "cost": 200,
         "maintenance": 15,
-        "pollution_reduction": 3,  
-        "extra_income": 5,         # e.g. from turning waste into resources
+        "pollution_mod": -3,
+        "note": "+5 EC/round synergy, needs Technician"
+    },
+    "Closed-Loop Water System": {
+        "cost": 150,
+        "maintenance": 10,
+        "pollution_mod": -2,
+        "note": "Requires Env Advisor, saves 5 EC/round disposal"
+    },
+    "Vertical Integration Logistics": {
+        "cost": 300,
+        "maintenance": 20,
+        "pollution_mod": 0,
+        "note": "2 factories on same tile, +5 EC/round transport savings"
+    },
+    "Urban Rooftop Farming": {
+        "cost": 100,
+        "maintenance": 5,
+        "pollution_mod": +1,
+        "note": "+2 produce units on Urban tile"
     },
 }
 
+# Workers (with cost if you want to track hiring cost):
 WORKERS = {
-    "Engineer": {
-        "salary": 50,
-        "production_bonus_percent": 20,  # advanced factories get +20% output
-    },
-    "Technician": {
-        "salary": 30,
-        "production_bonus_percent": 0,   # just ensures stable production
-    },
-    "Environmental Advisor": {
-        "salary": 40,
-        "pollution_reduction": 3,        # subtract from one factory's pollution
-    },
-    "Universal Worker": {
-        "salary": 20,
-        "production_bonus_percent": 0,
-    },
+    "Universal": 20,      # cost per worker (example) 
+    "Engineer": 50,
+    "Technician": 30,
+    "Environmental": 40
 }
 
-ACTIONS = [
-    "Buy Factory",
-    "Buy Worker",
-    "Buy Technology",
-    "Buy Resource",
-    "Sell Resource",
-    "Do Nothing",
-]
+# Transportation
+TRANSPORTS = {
+    "Hydrocarbon": {
+        "cost_per_tile": 3,
+        "pollution_per_tile": 1,
+        "capacity": 3
+    },
+    "Electric": {
+        "cost_per_tile": 6,
+        "pollution_per_tile": 0.5,
+        "capacity": 3
+    }
+}
 
-########################################################################
-# 2. PLAYER & GAME STATE CLASSES
-########################################################################
 
-class Player:
+################################################################################
+# PLAYER DATA
+################################################################################
+
+class PlayerData:
     """
-    Holds the state of a single player: capital, pollution, 
-    owned factories, technologies, workers, and resources.
+    Holds data for a single player:
+      - money
+      - pollution
+      - resources
+      - factories (list)
+      - technologies
+      - workers (dict)
+      - action_history
     """
     def __init__(self, name):
         self.name = name
-        self.capital = 1500
+        self.money = 1500
         self.pollution = 0
-        self.resources = {}  # e.g., {"Timber": 0, "Agriculture": 0, ...}
-        self.factories = []  # each factory is a dict with details
+        self.resources = {
+            "Bois": 0,
+            "Eau": 0,
+            "Carbone": 0,
+            "PierreFer": 0,
+            "Petrole": 0
+        }
+        self.factories = []
         self.technologies = []
-        self.workers = []
-        self.terrain = []    # track which terrain tiles they own (optional)
-        
-    def add_resource(self, rtype, amount):
-        self.resources[rtype] = self.resources.get(rtype, 0) + amount
+        self.workers = {
+            "Universal": 0,
+            "Engineer": 0,
+            "Technician": 0,
+            "Environmental": 0
+        }
+        self.action_history = []
 
-    def remove_resource(self, rtype, amount):
-        if rtype in self.resources:
-            self.resources[rtype] = max(0, self.resources[rtype] - amount)
-    
-    def get_resource_amount(self, rtype):
-        return self.resources.get(rtype, 0)
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "money": self.money,
+            "pollution": self.pollution,
+            "resources": self.resources,
+            "factories": self.factories,
+            "technologies": self.technologies,
+            "workers": self.workers,
+            "action_history": self.action_history
+        }
 
-    def add_factory(self, factory_name, terrain_type=None):
-        """
-        Add a new factory to the player's list of factories.
-        terrain_type is optional if you want to check requirement.
-        """
-        factory_data = FACTORIES[factory_name]
-        self.factories.append({
-            "name": factory_name,
-            "terrain_type": terrain_type,
-            "technologies": [],       # which tech modules are attached
-            "assigned_worker": None,  # which single worker is assigned
-        })
-    
-    def add_technology(self, tech_name):
-        self.technologies.append({
-            "name": tech_name,
-        })
+    def from_dict(self, data):
+        self.name = data["name"]
+        self.money = data["money"]
+        self.pollution = data["pollution"]
+        self.resources = data["resources"]
+        self.factories = data["factories"]
+        self.technologies = data["technologies"]
+        self.workers = data["workers"]
+        self.action_history = data["action_history"]
 
-    def add_worker(self, worker_type):
-        self.workers.append({
-            "type": worker_type,
-        })
-
-########################################################################
-# 3. MAIN GAME CLASS
-########################################################################
-
-class EcoFactoryGame:
-    """
-    Manages the overall game state: players, rounds, and
-    the end-of-round calculations (production, pollution, taxes).
-    """
-    def __init__(self):
-        self.players = [
-            Player("Player 1"),
-            Player("Player 2"),
-            Player("Player 3"),
-            Player("Player 4"),
-        ]
-        self.round_number = 1
-        self.max_rounds = 6  # end condition
-
-    def perform_action(self, player_idx, action_type, sub_option):
-        """
-        Execute the chosen action for a given player.
-        'sub_option' is typically the item name (factory, worker, tech, resource).
-        """
-        player = self.players[player_idx]
-
-        if action_type == "Buy Factory":
-            if sub_option in FACTORIES:
-                cost = FACTORIES[sub_option]["construction_cost"]
-                if player.capital >= cost:
-                    player.capital -= cost
-                    # (Optional) If terrain type matters, you can ask the user 
-                    # which terrain tile they’re building on.
-                    # For simplicity, we skip terrain checks here.
-                    player.add_factory(sub_option)
-                else:
-                    messagebox.showwarning("Error", 
-                        f"Not enough capital to build {sub_option}")
-            else:
-                messagebox.showinfo("Info", "Invalid factory selection.")
-
-        elif action_type == "Buy Worker":
-            if sub_option in WORKERS:
-                salary = WORKERS[sub_option]["salary"]
-                # No immediate cost besides salary each round, but you could 
-                # decide that hiring also has an upfront cost. We’ll skip that.
-                player.add_worker(sub_option)
-            else:
-                messagebox.showinfo("Info", "Invalid worker selection.")
-
-        elif action_type == "Buy Technology":
-            if sub_option in TECHNOLOGIES:
-                cost = TECHNOLOGIES[sub_option]["cost"]
-                if player.capital >= cost:
-                    player.capital -= cost
-                    player.add_technology(sub_option)
-                else:
-                    messagebox.showwarning("Error", 
-                        f"Not enough capital to buy {sub_option}")
-            else:
-                messagebox.showinfo("Info", "Invalid technology selection.")
-
-        elif action_type == "Buy Resource":
-            # Example: Let’s assume a simple fixed cost for resources
-            # (like 40 EC for 1 Timber, 25 EC for 1 Agriculture, etc.)
-            # For demonstration only. Expand as needed.
-            resource_prices = {
-                "Timber": 40,
-                "Agriculture": 25,
-                "Mineral": 40,
-                "Bioplastics": 50,
-            }
-            if sub_option in resource_prices:
-                cost = resource_prices[sub_option]
-                if player.capital >= cost:
-                    player.capital -= cost
-                    player.add_resource(sub_option, 1)
-                else:
-                    messagebox.showwarning("Error", 
-                        f"Not enough capital to buy 1 unit of {sub_option}")
-            else:
-                messagebox.showinfo("Info", "Invalid resource selection.")
-
-        elif action_type == "Sell Resource":
-            # Sell 1 unit of the resource to the bank at a base price
-            # This is a simple approach; you could open a numeric entry, etc.
-            resource_sell_prices = {
-                "Timber": 30,
-                "Agriculture": 20,
-                "Mineral": 40,
-                "Bioplastics": 50,
-                "ManufacturedGoods": 50,
-            }
-            if player.get_resource_amount(sub_option) > 0:
-                price = resource_sell_prices.get(sub_option, 0)
-                player.remove_resource(sub_option, 1)
-                player.capital += price
-            else:
-                messagebox.showwarning("Error", 
-                    f"You have no {sub_option} to sell.")
-
-        # "Do Nothing" -> no action
-        else:
-            pass
-
-    def end_round_calculations(self):
-        """
-        After all players have done their actions, we compute:
-        - Production from factories (and apply worker & tech bonuses)
-        - Pollution from factories (and apply worker & tech reductions)
-        - Carbon tax
-        - Worker salaries
-        - Tech maintenance
-        """
-        for player in self.players:
-            # 1) Production and pollution from each factory
-            round_pollution = 0
-            for f in player.factories:
-                f_info = FACTORIES[f["name"]]
-                base_poll = f_info["base_pollution"]
-                op_cost = f_info["operational_cost"]
-
-                # Check assigned worker
-                assigned_worker_data = None
-                if f["assigned_worker"] is not None:
-                    # f["assigned_worker"] might store an index or name
-                    # For simplicity, let's store the name of the worker
-                    # in the factory dict. Then find the worker data:
-                    assigned_worker_data = WORKERS.get(f["assigned_worker"], {})
-
-                # Production (base)
-                base_output = f_info.get("output_per_round", 0)
-
-                # If factory requires an input resource, check if player has it
-                # For demonstration, let's handle Bioplastics as an example
-                needed = f_info.get("input_needed", [])
-                can_produce = True
-                if needed:
-                    # The factory might require 1 unit of ANY input in needed
-                    # We'll assume it requires 1 unit total for the round
-                    has_input = False
-                    for r in needed:
-                        if player.get_resource_amount(r) > 0:
-                            has_input = True
-                            # consume it
-                            player.remove_resource(r, 1)
-                            break
-                    if not has_input:
-                        can_produce = False  # no production
-
-                # Worker bonus
-                if assigned_worker_data:
-                    # Production bonus
-                    bonus_pct = assigned_worker_data.get("production_bonus_percent", 0)
-                else:
-                    bonus_pct = 0
-
-                # Technologies on factory
-                tech_pollution_reduction = 0
-                tech_opcost_reduction = 0
-                tech_production_bonus = 0
-                tech_extra_income = 0
-
-                for tech_item in f["technologies"]:
-                    t_data = TECHNOLOGIES[tech_item]
-                    # accumulate effects
-                    if "pollution_reduction" in t_data:
-                        tech_pollution_reduction += t_data["pollution_reduction"]
-                    if "op_cost_reduction" in t_data:
-                        tech_opcost_reduction += t_data["op_cost_reduction"]
-                    if "production_bonus_percent" in t_data:
-                        tech_production_bonus += t_data["production_bonus_percent"]
-                    if "extra_income" in t_data:
-                        tech_extra_income += t_data["extra_income"]
-
-                # If an Environmental Advisor is assigned
-                env_advisor_reduce = 0
-                if assigned_worker_data and "pollution_reduction" in assigned_worker_data:
-                    env_advisor_reduce = assigned_worker_data["pollution_reduction"]
-
-                # Final pollution for this factory
-                final_factory_poll = base_poll - tech_pollution_reduction - env_advisor_reduce
-                if final_factory_poll < 0:
-                    final_factory_poll = 0
-
-                round_pollution += final_factory_poll
-
-                # Final operational cost
-                final_op_cost = op_cost - tech_opcost_reduction
-                if final_op_cost < 0:
-                    final_op_cost = 0
-
-                # Pay operational cost
-                if player.capital >= final_op_cost:
-                    player.capital -= final_op_cost
-                else:
-                    player.capital = 0  # or negative if you allow debt
-
-                # Determine actual production
-                if can_produce:
-                    total_bonus = bonus_pct + tech_production_bonus
-                    effective_output = base_output * (1 + total_bonus/100.0)
-                    # simple rounding
-                    produce_amount = int(round(effective_output))
-                    
-                    # Add the product to player resources
-                    out_type = f_info["output_type"]
-                    player.add_resource(out_type, produce_amount)
-
-                    # Possibly add extra income from certain tech
-                    if tech_extra_income > 0:
-                        player.capital += tech_extra_income
-                # else: no production due to missing input
-
-            # 2) Summation of total pollution -> carbon tax
-            player.pollution += round_pollution  # Accumulate pollution instead of resetting
-            carbon_tax = 5 * player.pollution    # Calculate tax based on accumulated pollution
-            if player.capital >= carbon_tax:
-                player.capital -= carbon_tax
-            else:
-                player.capital = 0  # Or handle insufficient funds differently
-
-            # 3) Pay worker salaries
-            total_salaries = 0
-            for w in player.workers:
-                wtype = w["type"]
-                total_salaries += WORKERS[wtype]["salary"]
-            if player.capital >= total_salaries:
-                player.capital -= total_salaries
-            else:
-                player.capital = 0
-
-            # 4) Pay tech maintenance
-            # Each tech the player owns has a maintenance cost
-            total_tech_maintenance = 0
-            for t in player.technologies:
-                t_data = TECHNOLOGIES[t["name"]]
-                if "maintenance" in t_data:
-                    total_tech_maintenance += t_data["maintenance"]
-            if player.capital >= total_tech_maintenance:
-                player.capital -= total_tech_maintenance
-            else:
-                player.capital = 0
-
-        # Increment round
-        self.round_number += 1
-
-    def assign_worker_to_factory(self, player_idx, factory_name, worker_name):
-        """
-        Quick utility to assign a worker to a factory. 
-        In a more advanced UI, you’d select which worker 
-        goes to which factory, etc.
-        """
-        player = self.players[player_idx]
-        # find the factory and assign
-        for f in player.factories:
-            if f["name"] == factory_name:
-                f["assigned_worker"] = worker_name
-                break
-
-    def check_end_game(self):
-        """Check if we reached the last round or any other end condition."""
-        if self.round_number > self.max_rounds:
-            return True
-        return False
-
-    def compute_winner(self):
-        """
-        According to the revised rules, final score = capital / (1 + pollution).
-        We’ll just read player.pollution from the last round. 
-        """
-        results = []
-        for p in self.players:
-            score = 0
-            # If pollution is 0, score = capital / 1
-            # Otherwise = capital / (1 + pollution)
-            score = p.capital / (1 + p.pollution)
-            results.append((p.name, p.capital, p.pollution, score))
-
-        # Sort descending by score
-        results.sort(key=lambda x: x[3], reverse=True)
-        return results
-
-########################################################################
-# 4. TKINTER GUI
-########################################################################
+################################################################################
+# MAIN APP
+################################################################################
 
 class EcoFactoryApp(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Eco-Factory Challenge Companion App")
+        self.geometry("1200x650")
+        self.resizable(False, False)
 
-        self.game = EcoFactoryGame()
+        # Game logic
+        self.current_round = 1
+        self.max_rounds = 6
 
-        # Create UI for each player's actions in separate frames
+        self.players = [
+            PlayerData("Player A"),
+            PlayerData("Player B"),
+            PlayerData("Player C"),
+            PlayerData("Player D"),
+        ]
+
+        self.undo_stack = []
+
+        self.create_menu()
+        self.create_main_frames()
+        self.create_bottom_controls()
+        self.update_all_displays()
+
+    ############################
+    # MENU
+    ############################
+    def create_menu(self):
+        menubar = tk.Menu(self)
+        file_menu = tk.Menu(menubar, tearoff=0)
+        file_menu.add_command(label="New / Reset", command=self.reset_game)
+        file_menu.add_command(label="Save", command=self.save_game)
+        file_menu.add_command(label="Load", command=self.load_game)
+        file_menu.add_separator()
+        file_menu.add_command(label="Exit", command=self.quit_app)
+
+        menubar.add_cascade(label="File", menu=file_menu)
+        self.config(menu=menubar)
+
+    ############################
+    # MAIN FRAMES
+    ############################
+    def create_main_frames(self):
         self.player_frames = []
-        self.action_vars = []
-        self.subaction_vars = []
-        
-        self.create_gui()
-
-    def create_gui(self):
-        top_label = tk.Label(self, text="Eco-Factory Challenge Companion", 
-                             font=("Arial", 16, "bold"))
-        top_label.pack(pady=10)
 
         container = tk.Frame(self)
-        container.pack()
+        container.pack(fill=tk.BOTH, expand=True)
 
-        for i, player in enumerate(self.game.players):
+        for idx, player in enumerate(self.players):
             frame = tk.LabelFrame(container, text=player.name, padx=5, pady=5)
-            frame.grid(row=i // 2, column=i % 2, padx=5, pady=5, sticky="nsew")
+            frame.grid(row=0, column=idx, sticky='nsew', padx=5, pady=5)
 
-            # Action dropdown
-            action_var = tk.StringVar(value=ACTIONS[0])
-            action_label = tk.Label(frame, text="Choose Action:")
-            action_label.pack()
-            action_menu = ttk.Combobox(frame, textvariable=action_var, 
-                                       values=ACTIONS, state="readonly")
-            action_menu.pack()
+            money_lbl = tk.Label(frame, text=f"Money (EC): {player.money}", font=("Arial", 10, "bold"))
+            money_lbl.pack(anchor="w", pady=2)
 
-            # Subaction dropdown (factories, workers, tech, resources)
-            subaction_var = tk.StringVar(value="")
-            subaction_label = tk.Label(frame, text="Select Item:")
-            subaction_label.pack()
-            subaction_menu = ttk.Combobox(frame, textvariable=subaction_var, 
-                                          values=[], state="readonly")
-            subaction_menu.pack()
+            poll_lbl = tk.Label(frame, text=f"Pollution: {player.pollution}", font=("Arial", 10, "bold"))
+            poll_lbl.pack(anchor="w", pady=2)
 
-            # Create closure for event handling
-            def make_action_handler(menu, a_var, s_var):
-                def handler(event):
-                    selected = a_var.get()
-                    if selected == "Buy Factory":
-                        menu.config(values=list(FACTORIES.keys()))
-                    elif selected == "Buy Worker":
-                        menu.config(values=list(WORKERS.keys()))
-                    elif selected == "Buy Technology":
-                        menu.config(values=list(TECHNOLOGIES.keys()))
-                    elif selected == "Buy Resource":
-                        menu.config(values=["Timber","Agriculture","Mineral","Bioplastics"])
-                    elif selected == "Sell Resource":
-                        menu.config(values=["Timber","Agriculture","Mineral","Bioplastics","ManufacturedGoods"])
-                    else:
-                        menu.config(values=[])
-                    s_var.set("")  # Reset selection
-                return handler
+            res_lbl = tk.Label(frame, text=self._fmt_resources(player.resources), justify=tk.LEFT)
+            res_lbl.pack(anchor="w", pady=2)
 
-            # Bind the handler
-            action_menu.bind("<<ComboboxSelected>>", 
-                            make_action_handler(subaction_menu, action_var, subaction_var))
+            fact_lbl = tk.Label(frame, text="Factories:\n(None)", justify=tk.LEFT)
+            fact_lbl.pack(anchor="w", pady=2)
 
-            # A button to confirm the action
-            def on_confirm_action(idx=i, a_var=action_var, s_var=subaction_var):
-                act = a_var.get()
-                sub = s_var.get()
-                self.game.perform_action(idx, act, sub)
-                self.refresh_ui()
+            tech_lbl = tk.Label(frame, text="Technologies:\n(None)", justify=tk.LEFT)
+            tech_lbl.pack(anchor="w", pady=2)
 
-            confirm_btn = tk.Button(frame, text="Confirm Action",
-                                    command=on_confirm_action)
-            confirm_btn.pack(pady=5)
+            worker_lbl = tk.Label(frame, text=self._fmt_workers(player.workers), justify=tk.LEFT)
+            worker_lbl.pack(anchor="w", pady=2)
 
-            # Info label about capital, pollution, resources
-            info_label = tk.Label(frame, text=self.get_player_info_text(i),
-                                  justify="left")
-            info_label.pack(pady=5)
+            # Action input area (now with drop-down menus)
+            input_frame = tk.Frame(frame)
+            input_frame.pack(anchor="w", pady=5)
 
-            self.player_frames.append(frame)
-            self.action_vars.append(action_var)
-            self.subaction_vars.append(subaction_var)
+            # 1) Action Type
+            tk.Label(input_frame, text="Action:").grid(row=0, column=0, sticky='w')
+            action_type_var = tk.StringVar(value="Buy Terrain")
+            action_type_options = [
+                "Buy Terrain",
+                "Buy Resource",
+                "Buy Factory",
+                "Buy Technology",
+                "Buy Worker",
+                "Add Transportation"
+            ]
+            action_type_menu = tk.OptionMenu(input_frame, action_type_var, *action_type_options)
+            action_type_menu.grid(row=0, column=1, sticky='w', padx=5)
 
-        # Button to end the round
-        end_round_btn = tk.Button(self, text="End Round & Calculate",
-                                  command=self.end_round)
-        end_round_btn.pack(pady=10)
+            # 2) Sub Drop-Down
+            sub_type_var = tk.StringVar(value="T1")  # default
+            sub_drop_menu = tk.OptionMenu(input_frame, sub_type_var, *TERRAINS.keys())
+            sub_drop_menu.grid(row=1, column=1, sticky='w', padx=5)
 
-        # A label to show current round
-        self.round_label = tk.Label(self, text=f"Round: {self.game.round_number}")
-        self.round_label.pack()
+            # 3) Additional Input (like distance or quantity)
+            tk.Label(input_frame, text="Distance/Qte:").grid(row=2, column=0, sticky='w')
+            extra_var = tk.StringVar(value="1")
+            extra_entry = tk.Entry(input_frame, textvariable=extra_var, width=8)
+            extra_entry.grid(row=2, column=1, sticky='w', padx=5)
 
-        # We’ll also keep a label for final results if the game ends
-        self.final_result_label = tk.Label(self, text="", fg="blue")
-        self.final_result_label.pack(pady=10)
+            # We'll store references for usage
+            # history box
+            history_box = tk.Listbox(frame, height=8, width=26)
+            history_box.pack(anchor="w", pady=5)
 
-        self.refresh_ui()
+            # On change of action_type, we update sub_drop_menu options
+            def on_action_type_change(*args, stv=sub_type_var):
+                # Clear sub_type_var
+                stv.set("")
+                chosen = action_type_var.get()
+                if chosen == "Buy Terrain":
+                    menu_items = list(TERRAINS.keys())
+                elif chosen == "Buy Resource":
+                    menu_items = list(RESOURCES.keys())
+                elif chosen == "Buy Factory":
+                    menu_items = list(FACTORIES.keys())
+                elif chosen == "Buy Technology":
+                    menu_items = list(TECHNOLOGIES.keys())
+                elif chosen == "Buy Worker":
+                    menu_items = list(WORKERS.keys())
+                elif chosen == "Add Transportation":
+                    menu_items = list(TRANSPORTS.keys())
+                else:
+                    menu_items = []
 
-    def refresh_ui(self):
-        """Refresh capital/pollution info for each player frame."""
-        for i, frame in enumerate(self.player_frames):
-            # The last widget inside is our info_label
-            info_label = frame.winfo_children()[-1]
-            info_label.config(text=self.get_player_info_text(i))
+                sub_drop_menu["menu"].delete(0, "end")
+                for item in menu_items:
+                    sub_drop_menu["menu"].add_command(
+                        label=item, command=lambda value=item: stv.set(value)
+                    )
+                if menu_items:
+                    stv.set(menu_items[0])
 
-        self.round_label.config(text=f"Round: {self.game.round_number}")
+            action_type_var.trace("w", on_action_type_change)
+            # initialize
+            on_action_type_change()
 
-    def get_player_info_text(self, idx):
-        """Returns a text summary for the player's current state."""
-        p = self.game.players[idx]
-        resources_text = ", ".join(f"{k}:{v}" for k,v in p.resources.items() if v > 0)
-        if not resources_text:
-            resources_text = "None"
-        info = (
-            f"Capital: {p.capital}\n"
-            f"Pollution: {p.pollution}\n"
-            f"Resources: {resources_text}\n"
-            f"Factories: {[f['name'] for f in p.factories]}\n"
-            f"Workers: {[w['type'] for w in p.workers]}\n"
-            f"Technologies: {[t['name'] for t in p.technologies]}"
+            # Action Button
+            add_btn = tk.Button(
+                input_frame, text="Perform Action",
+                command=lambda idx=idx,
+                               at=action_type_var,
+                               st=sub_type_var,
+                               ex=extra_var: self.perform_action(idx, at, st, ex)
+            )
+            add_btn.grid(row=3, column=0, columnspan=2, pady=5)
+
+            # store references
+            self.player_frames.append({
+                "frame": frame,
+                "money_label": money_lbl,
+                "poll_label": poll_lbl,
+                "res_label": res_lbl,
+                "fact_label": fact_lbl,
+                "tech_label": tech_lbl,
+                "worker_label": worker_lbl,
+                "action_type_var": action_type_var,
+                "sub_type_var": sub_type_var,
+                "extra_var": extra_var,
+                "history_box": history_box
+            })
+
+    def create_bottom_controls(self):
+        bottom_frame = tk.Frame(self)
+        bottom_frame.pack(side=tk.BOTTOM, fill=tk.X, pady=10)
+
+        self.round_label = tk.Label(bottom_frame, text=f"Round: {self.current_round}")
+        self.round_label.pack(side=tk.LEFT, padx=10)
+
+        next_btn = tk.Button(bottom_frame, text="Next Round", command=self.next_round)
+        next_btn.pack(side=tk.LEFT, padx=5)
+
+        undo_btn = tk.Button(bottom_frame, text="Undo Last Action", command=self.undo_last_action)
+        undo_btn.pack(side=tk.LEFT, padx=5)
+
+        end_btn = tk.Button(bottom_frame, text="End Game", command=self.end_game)
+        end_btn.pack(side=tk.LEFT, padx=5)
+
+    ############################
+    # ACTION MECHANICS
+    ############################
+    def perform_action(self, player_idx, action_type_var, sub_type_var, extra_var):
+        """
+        Called when user clicks 'Perform Action' in a player's frame.
+        We parse the chosen action type, sub-type, and extra input (quantity or distance).
+        Then we automatically calculate cost/pollution changes.
+        """
+        player = self.players[player_idx]
+        old_state = self._snapshot_player(player)
+
+        action_type = action_type_var.get()  # e.g. "Buy Terrain"
+        sub_type = sub_type_var.get()        # e.g. "T5" or "Bois" or "AgroVerde"
+        extra_text = extra_var.get().strip() # distance or quantity
+
+        try:
+            extra_val = int(extra_text)
+        except ValueError:
+            extra_val = 1
+
+        action_log = f"{action_type} -> {sub_type} x {extra_val}"
+        cost_delta = 0
+        poll_delta = 0
+
+        if action_type == "Buy Terrain":
+            # sub_type is one of T1..T20, cost in TERRAINS
+            if sub_type in TERRAINS:
+                cost_delta = -TERRAINS[sub_type] * extra_val
+            else:
+                messagebox.showerror("Error", "Invalid terrain selected.")
+                return
+
+        elif action_type == "Buy Resource":
+            # sub_type in RESOURCES
+            if sub_type in RESOURCES:
+                cost_per_unit = RESOURCES[sub_type]
+                total_cost = cost_per_unit * extra_val * (-1)
+                cost_delta = total_cost
+                # Increase resource
+                player.resources[sub_type] = player.resources[sub_type] + extra_val
+            else:
+                messagebox.showerror("Error", "Invalid resource selected.")
+                return
+
+        elif action_type == "Buy Factory":
+            # sub_type in FACTORIES
+            if sub_type in FACTORIES:
+                fac_cost = FACTORIES[sub_type]["cost"] * extra_val
+                cost_delta = -fac_cost
+                # Add that many factories to player
+                for _ in range(extra_val):
+                    player.factories.append({"name": sub_type, "workers_assigned": 0})
+            else:
+                messagebox.showerror("Error", "Invalid factory selected.")
+                return
+
+        elif action_type == "Buy Technology":
+            if sub_type in TECHNOLOGIES:
+                tech_cost = TECHNOLOGIES[sub_type]["cost"] * extra_val
+                cost_delta = -tech_cost
+                # add the tech to player's list if not present multiple times
+                for _ in range(extra_val):
+                    player.technologies.append(sub_type)
+            else:
+                messagebox.showerror("Error", "Invalid technology selected.")
+                return
+
+        elif action_type == "Buy Worker":
+            if sub_type in WORKERS:
+                worker_cost = WORKERS[sub_type] * extra_val
+                cost_delta = -worker_cost
+                # increment worker count
+                player.workers[sub_type] = max(player.workers[sub_type] + extra_val, 0)
+            else:
+                messagebox.showerror("Error", "Invalid worker type.")
+                return
+
+        elif action_type == "Add Transportation":
+            # sub_type in TRANSPORTS
+            if sub_type in TRANSPORTS:
+                # extra_val is distance in tiles
+                data = TRANSPORTS[sub_type]
+                cost_per_tile = data["cost_per_tile"]
+                poll_per_tile = data["pollution_per_tile"]
+                cost_delta = -(cost_per_tile * extra_val)
+                poll_delta = poll_per_tile * extra_val
+            else:
+                messagebox.showerror("Error", "Invalid transportation type.")
+                return
+
+        # Apply cost/pollution to player
+        player.money += cost_delta
+        player.pollution += poll_delta
+
+        # build action record
+        action_record = {
+            "round": self.current_round,
+            "action_text": action_log,
+            "cost_delta": cost_delta,
+            "poll_delta": poll_delta,
+            "prev_state": old_state
+        }
+        player.action_history.append(action_record)
+        self.undo_stack.append((player_idx, action_record))
+
+        # record in history box
+        self.player_frames[player_idx]["history_box"].insert(tk.END, f"R{self.current_round}: {action_log}")
+
+        self.update_all_displays()
+
+    def next_round(self):
+        # each factory tries to consume resources; produce money, generate pollution
+        for p in self.players:
+            for f in p.factories:
+                fname = f["name"]
+                if fname not in FACTORIES:
+                    continue
+                specs = FACTORIES[fname]
+                # check resource requirements
+                can_produce = True
+                for rtype, amt in specs["resource_requirements"].items():
+                    if p.resources[rtype] < amt:
+                        can_produce = False
+                        break
+                if can_produce:
+                    # consume
+                    for rtype, amt in specs["resource_requirements"].items():
+                        p.resources[rtype] -= amt
+                    # produce
+                    p.money += specs["income_per_round"]
+                    # pollution
+                    p.pollution += specs["pollution_per_round"]
+                    # apply any tech pollution mods
+                    for tname in p.technologies:
+                        if tname in TECHNOLOGIES:
+                            p.pollution += TECHNOLOGIES[tname]["pollution_mod"]
+
+        # carbon tax
+        for p in self.players:
+            if p.pollution < 0:
+                p.pollution = 0
+            tax = int(p.pollution * 5)
+            p.money -= tax
+
+        self.current_round += 1
+        if self.current_round > self.max_rounds:
+            self.end_game()
+        else:
+            self.update_all_displays()
+
+    def end_game(self):
+        results = []
+        for p in self.players:
+            ratio = p.money / (1 + p.pollution) if p.pollution >= 0 else p.money
+            results.append((p.name, p.money, p.pollution, ratio))
+
+        results.sort(key=lambda x: x[3], reverse=True)
+        msg = "Final Results:\n\n"
+        rank = 1
+        for (name, money, pol, ratio) in results:
+            msg += f"{rank}. {name} - Money: {money}, Pollution: {pol}, Ratio: {ratio:.2f}\n"
+            rank += 1
+
+        messagebox.showinfo("End of Game", msg)
+
+    def undo_last_action(self):
+        if not self.undo_stack:
+            messagebox.showinfo("Undo", "No actions to undo.")
+            return
+        player_idx, action_record = self.undo_stack.pop()
+        p = self.players[player_idx]
+        # revert
+        prev = action_record["prev_state"]
+        p.money = prev["money"]
+        p.pollution = prev["pollution"]
+        p.resources = prev["resources"]
+        p.factories = prev["factories"]
+        p.technologies = prev["technologies"]
+        p.workers = prev["workers"]
+        if p.action_history and p.action_history[-1] == action_record:
+            p.action_history.pop()
+
+        # remove from listbox
+        hb = self.player_frames[player_idx]["history_box"]
+        if hb.size() > 0:
+            hb.delete(tk.END)
+
+        self.update_all_displays()
+
+    ############################
+    # STATE SNAPSHOTS
+    ############################
+    def _snapshot_player(self, p):
+        return {
+            "money": p.money,
+            "pollution": p.pollution,
+            "resources": dict(p.resources),
+            "factories": [f.copy() for f in p.factories],
+            "technologies": list(p.technologies),
+            "workers": dict(p.workers)
+        }
+
+    ############################
+    # UI UPDATES
+    ############################
+    def update_all_displays(self):
+        for idx, pf in enumerate(self.player_frames):
+            p = self.players[idx]
+            pf["money_label"].config(text=f"Money (EC): {p.money}")
+            pf["poll_label"].config(text=f"Pollution: {p.pollution}")
+            pf["res_label"].config(text=self._fmt_resources(p.resources))
+            pf["fact_label"].config(text=self._fmt_factories(p.factories))
+            pf["tech_label"].config(text=self._fmt_techs(p.technologies))
+            pf["worker_label"].config(text=self._fmt_workers(p.workers))
+        self.round_label.config(text=f"Round: {self.current_round}")
+
+    def _fmt_resources(self, d):
+        lines = ["Resources:"]
+        for k, v in d.items():
+            lines.append(f"  {k}: {v}")
+        return "\n".join(lines)
+
+    def _fmt_factories(self, facts):
+        if not facts:
+            return "Factories:\n(None)"
+        lines = ["Factories:"]
+        for f in facts:
+            lines.append(f"  - {f['name']} (workers: {f['workers_assigned']})")
+        return "\n".join(lines)
+
+    def _fmt_techs(self, tlist):
+        if not tlist:
+            return "Technologies:\n(None)"
+        lines = ["Technologies:"]
+        for t in tlist:
+            lines.append(f"  - {t}")
+        return "\n".join(lines)
+
+    def _fmt_workers(self, wdict):
+        lines = ["Workers:"]
+        for wtype, count in wdict.items():
+            lines.append(f"  {wtype}: {count}")
+        return "\n".join(lines)
+
+    ############################
+    # SAVE / LOAD / RESET
+    ############################
+    def save_game(self):
+        file_path = filedialog.asksaveasfilename(
+            defaultextension=".json",
+            filetypes=[("JSON Files", "*.json")],
+            title="Save Game Session"
         )
-        return info
+        if not file_path:
+            return
+        data = {
+            "current_round": self.current_round,
+            "players": [p.to_dict() for p in self.players],
+            "undo_stack": self.undo_stack
+        }
+        try:
+            with open(file_path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2)
+            messagebox.showinfo("Save Successful", f"Game saved to {file_path}")
+        except Exception as e:
+            messagebox.showerror("Save Error", f"Error saving file:\n{e}")
 
-    def end_round(self):
-        """Perform end-round calculations and check for game end."""
-        self.game.end_round_calculations()
-        self.refresh_ui()
+    def load_game(self):
+        file_path = filedialog.askopenfilename(
+            defaultextension=".json",
+            filetypes=[("JSON Files", "*.json")],
+            title="Load Game Session"
+        )
+        if not file_path:
+            return
+        if not os.path.isfile(file_path):
+            messagebox.showerror("Load Error", "File not found.")
+            return
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            self.current_round = data.get("current_round", 1)
+            p_dicts = data.get("players", [])
+            self.undo_stack = data.get("undo_stack", [])
+            for i, pd in enumerate(p_dicts):
+                self.players[i].from_dict(pd)
 
-        if self.game.check_end_game():
-            # Show final scores
-            results = self.game.compute_winner()
-            result_str = "FINAL RESULTS:\n"
-            rank = 1
-            for r in results:
-                name, cap, poll, score = r
-                result_str += (f"{rank}) {name} | "
-                               f"Capital={cap} | Pollution={poll} | "
-                               f"Score={round(score,2)}\n")
-                rank += 1
-            
-            self.final_result_label.config(text=result_str)
-            messagebox.showinfo("Game Over", "The game has ended!")
-            
+            # clear listboxes
+            for pf in self.player_frames:
+                pf["history_box"].delete(0, tk.END)
 
-########################################################################
-# 5. MAIN ENTRY POINT
-########################################################################
+            # rebuild action histories
+            for i, p in enumerate(self.players):
+                for act in p.action_history:
+                    txt = f"R{act['round']}: {act['action_text']}"
+                    self.player_frames[i]["history_box"].insert(tk.END, txt)
 
-if __name__ == "__main__":
+            self.update_all_displays()
+            messagebox.showinfo("Load Successful", "Game session loaded.")
+        except Exception as e:
+            messagebox.showerror("Load Error", f"Error:\n{e}")
+
+    def reset_game(self):
+        confirm = messagebox.askyesno("Reset Game", "Are you sure you want to reset?")
+        if confirm:
+            self.current_round = 1
+            self.undo_stack.clear()
+            for idx, p in enumerate(self.players):
+                n = p.name
+                self.players[idx] = PlayerData(n)
+                self.player_frames[idx]["history_box"].delete(0, tk.END)
+            self.update_all_displays()
+
+    def quit_app(self):
+        self.destroy()
+
+
+def main():
     app = EcoFactoryApp()
     app.mainloop()
+
+if __name__ == "__main__":
+    main()

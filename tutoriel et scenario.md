@@ -1,11 +1,10 @@
-# **TUTORIEL COMPLET DU JEU DE PLATEAU : DÉFI ÉCO-USINE**  
-*(aussi appelé « ECO-FACTORY CHALLENGE »)*
+# **TUTORIEL COMPLET DU JEU ECO-FACTORY CHALLENGE**  
 
 ---
 
 ## **1. INTRODUCTION GÉNÉRALE**
 
-Bienvenue dans **DÉFI ÉCO-USINE**, un jeu de gestion industrielle et environnementale. Vous incarnez un entrepreneur qui cherche à maximiser son capital tout en limitant la pollution. La victoire repose sur l’optimisation de votre **Ratio Capital-Pollution** : plus vous accumulez de **Eco-Credits (EC)** et moins vous générez de **Points de Pollution (PP)**, meilleur sera votre score final.
+Bienvenue dans **ECO-FACTORY CHALLENGE**, un jeu de gestion industrielle et environnementale. Vous incarnez un entrepreneur qui cherche à maximiser son capital tout en limitant la pollution. La victoire repose sur l’optimisation de votre **Ratio Capital-Pollution** : plus vous accumulez de **Eco-Credits (EC)** et moins vous générez de **Points de Pollution (PP)**, meilleur sera votre score final.
 
 ### **Objectif Principal**  
 - **Accumuler des Eco-Credits** (EC)  

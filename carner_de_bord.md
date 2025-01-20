@@ -217,3 +217,125 @@ Trois membres de l'équipe ont travaillé sur un **Diagramme de Gantt** pour la 
 
 ---
 
+
+### Carnet de Bord - **Eco-Factory Challenge** - TP 7
+
+**Date :** 20 Janvier 2025 
+**Membres présents :** Équipe de 6 personnes  
+
+---
+
+#### **Avancées :**
+
+**Ce que vous avez fait aujourd’hui :**
+
+1. **Test du Jeu avec une Autre Équipe :**
+   - **Objectif :** Évaluer la jouabilité des versions physique et virtuelle du jeu, et identifier les problèmes potentiels.
+   - **Méthode :** Organisation de sessions de jeu avec une équipe externe, observation des interactions, et recueil de feedback détaillé.
+   
+2. **Identification des Problèmes et Bugs :**
+   
+   - **Jeu Physique :**
+     - **Problèmes Potentiels :**
+       - **Équilibrage des Ressources :** Certaines ressources pourraient être trop rares ou trop abondantes, affectant la progression des joueurs.
+       - **Clarté des Règles :** Ambiguïtés dans les règles pouvant mener à des interprétations erronées pendant le jeu.
+       - **Qualité du Matériel :** Usabilité et lisibilité des cartes et du plateau, surtout après plusieurs utilisations.
+     - **Problèmes Identifiés lors des Tests :**
+       - **Équilibrage des Ressources :** Découverte que certaines ressources essentielles étaient insuffisamment disponibles, ralentissant l'avancement.
+       - **Clarté des Règles :** Les joueurs ont eu des difficultés à comprendre certaines interactions entre les technologies et les usines.
+       - **Matériel de Jeu :** Quelques cartes étaient endommagées ou mal imprimées, rendant la lecture difficile.
+     - **Solutions Apportées :**
+       - **Rééquilibrage des Ressources :** Ajustement des quantités disponibles pour certaines ressources clés.
+       - **Clarification des Règles :** Mise à jour du livret de règles avec des exemples illustratifs et des clarifications spécifiques.
+       - **Amélioration du Matériel :** Reproduction des cartes défectueuses avec une meilleure qualité d'impression et matériaux plus résistants.
+   
+   - **Jeu Virtuel :**
+     - **Problèmes Potentiels :**
+       - **Performance :** Ralentissements lors de l'exécution de certaines actions complexes.
+       - **Interface Utilisateur (UI) :** Certains éléments de l'interface peuvent être peu intuitifs ou mal positionnés.
+       - **Fonctionnalités Incomplètes :** Absence de certaines fonctionnalités prévues, limitant l'expérience utilisateur.
+     - **Problèmes Identifiés lors des Tests :**
+       - **Performance :** Temps de chargement prolongés lors du lancement des sessions de jeu.
+       - **Interface Utilisateur :** Difficultés de navigation dans les menus et certaines options non accessibles facilement.
+       - **Fonctionnalités Incomplètes :** La gestion avancée des ressources n'était pas entièrement fonctionnelle, limitant les stratégies des joueurs.
+     - **Solutions Apportées :**
+       - **Optimisation du Code :** Refactorisation des scripts pour améliorer les performances et réduire les temps de chargement.
+       - **Refonte de l'UI :** Redesign des éléments de l'interface pour une navigation plus intuitive et fluide.
+       - **Finalisation des Fonctionnalités :** Intégration des fonctionnalités manquantes, notamment la gestion avancée des ressources et les interactions entre joueurs.
+
+3. **Modifications et Améliorations :**
+   - **Feeling du Jeu :**
+     - Introduction de feedback visuel et sonore pour renforcer l'immersion et la satisfaction des actions effectuées.
+   - **Vitesse du Jeu :**
+     - Réduction des délais entre les tours et simplification des actions pour accélérer le rythme global du jeu.
+   - **Aspect Ludique :**
+     - Ajout de mini-défis et d’objectifs secondaires pour augmenter l’engagement et le plaisir des joueurs.
+   
+4. **Création des Versions Physiques des Cartes et de la Map :**
+   - **Réalisation :**
+     - Finalisation et impression des versions physiques des cartes d'usines, de technologies et de travailleurs.
+     - Assemblage et optimisation de la map physique du jeu, assurant une disposition équilibrée des ressources.
+
+---
+
+#### **Prévisions pour la prochaine session :**
+
+**Ce que vous prévoyez de faire la prochaine fois :**
+
+1. **Intégration des Feedbacks des Tests :**
+   - Appliquer les retours recueillis lors des tests avec l’équipe externe pour affiner les mécaniques de jeu et corriger les imperfections restantes.
+
+2. **Finalisation des Versions Physique et Virtuelle :**
+   - Assurer la cohérence entre les versions physique et virtuelle du jeu.
+   - Effectuer des tests exhaustifs pour garantir une expérience utilisateur optimale dans les deux versions.
+
+3. **Développement des Scénarios de Jeu Avancés :**
+   - Création de scénarios spécifiques avec des objectifs variés pour enrichir la rejouabilité et offrir des défis supplémentaires aux joueurs.
+
+4. **Préparation des Supports de Présentation :**
+   - Élaborer des supports visuels et écrits pour la présentation finale du projet, incluant des démonstrations des versions physique et virtuelle.
+
+---
+
+#### **Organisation et retours sur le travail d’équipe :**
+
+**Ce qui marche bien :**
+- **Collaboration Efficace :** Forte synergie entre les membres de l’équipe, facilitant la résolution rapide des problèmes identifiés.
+- **Communication Claire :** Informations partagées de manière transparente, assurant que tout le monde est aligné sur les objectifs et les tâches à accomplir.
+- **Adaptabilité :** Capacité à ajuster rapidement les plans en fonction des feedbacks et des défis rencontrés lors des tests.
+
+**Ce qui est compliqué :**
+- **Gestion des Versions Physique et Virtuelle :** Assurer la compatibilité et la parité entre les deux versions nécessite une coordination étroite et continue.
+- **Équilibrage des Mécaniques :** Trouver le juste équilibre entre complexité et jouabilité reste un défi constant, surtout après l'introduction de nouvelles fonctionnalités.
+
+**Ce que vous gardez et ce que vous changez :**
+
+- **À garder :**
+  - **Méthode Collaborative :** Continuer à impliquer toute l’équipe dans les prises de décisions importantes pour maintenir une dynamique positive.
+  - **Répartition Claire des Rôles :** Maintenir une définition précise des responsabilités de chacun pour une efficacité optimale.
+
+- **À améliorer :**
+  - **Planification Plus Précise :** Affiner le calendrier des tâches pour mieux anticiper les besoins en ressources et les délais, évitant ainsi les surcharges de travail.
+  - **Sessions de Test Régulières :** Organiser des tests plus fréquents pour identifier et corriger les problèmes en amont, garantissant ainsi une progression fluide du projet.
+
+---
+
+#### **Ce qui reste à améliorer :**
+
+1. **Équilibrage des Ressources et des Mécaniques :**
+   - Continuer à affiner les quantités et les coûts des ressources pour assurer un équilibre optimal entre les différentes stratégies de jeu.
+
+2. **Optimisation des Performances de la Version Virtuelle :**
+   - Poursuivre l’optimisation du code pour garantir une expérience fluide sans ralentissements, même lors des interactions complexes.
+
+3. **Amélioration de l'Interface Utilisateur :**
+   - Finaliser la refonte de l'interface pour la rendre encore plus intuitive et accessible, facilitant la navigation pour les nouveaux joueurs.
+
+4. **Développement de Scénarios Avancés :**
+   - Créer et tester des scénarios spécifiques offrant des défis supplémentaires, augmentant ainsi la rejouabilité et l'engagement des joueurs.
+
+5. **Préparation de la Présentation Finale :**
+   - Compléter les supports de présentation, incluant des démonstrations vidéo des versions physique et virtuelle, et préparer une démonstration fluide et engageante pour les évaluateurs.
+
+
+---

@@ -1,0 +1,293 @@
+<!DOCTYPE HTML>
+<!--
+	ECO-Factory Challenge Companion App Documentation
+	Custom modification based on Phantom by HTML5 UP
+-->
+<html>
+	<head>
+		<title>Companion App - ECO-Factory Challenge</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+		<!-- Wrapper -->
+		<div id="wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="inner">
+
+						<!-- Logo -->
+							<a href="index.html" class="logo">
+								<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">ECO FACTORY CHALLENGE</span>
+							</a>
+
+						<!-- Nav -->
+							<nav>
+								<ul>
+									<li><a href="#menu">Menu</a></li>
+								</ul>
+							</nav>
+
+					</div>
+				</header>
+
+			<!-- Menu -->
+				<nav id="menu">
+					<h2>Menu</h2>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="introduction_et_presentation.html">Introduction et Présentation</a></li>
+						<li><a href="gamae.html">Fiche du Jeu</a></li>
+						<li><a href="materiels.html">Materiel Necessaire</a></li>
+						<li><a href="companion_app.html">Application Companion</a></li>
+						<li><a href="regles.html">regles du Jeu</a></li>
+						<li><a href="deroulement_et_tutoriel.html">Tutoriel et Déroulement</a></li>
+						<li><a href="sources.html">Sources</a></li>
+						<li><a href="credits.html">Presentation des Membres</a></li>
+					</ul>
+				</nav>
+
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<!-- Description Section -->
+							<section id="description">
+								<h2>Description</h2>
+								<p><strong>ECO-FACTORY CHALLENGE Companion App</strong> est un utilitaire essentiel pour tous les joueurs du jeu de plateau/d’entreprise écoresponsable <strong>ECO-FACTORY CHALLENGE</strong>. Elle vous offre :</p>
+								<ul>
+									<li>Une <strong>interface complète</strong> pour gérer <strong>jusqu’à 4 joueurs</strong> (avec ajout dynamique).</li>
+									<li>L’<strong>achat et la gestion</strong> de terrains, y compris leur coût, leurs ressources et leur propriétaire.</li>
+									<li>La <strong>création, la suppression et la gestion</strong> d’usines en tenant compte de leurs coûts, besoins en ressources, terrains autorisés et pollution produite.</li>
+									<li>Un <strong>système avancé</strong> de <strong>transport</strong> (électrique vs fossile) avec des coûts et des pollutions variables, modulés par certaines <strong>technologies</strong>.</li>
+									<li>La <strong>gestion des travailleurs</strong> (ingénieurs, techniciens, conseillers environnementaux, ou travailleurs universels), leur salaire et leur assignation aux usines appropriées.</li>
+									<li>La <strong>production, consommation</strong> et <strong>échange</strong> de ressources (vente à la banque ou troc entre joueurs si vous le souhaitez).</li>
+									<li>Un <strong>onglet pollution et coûts</strong> pour calculer précisément vos dépenses (maintenance, salaires, taxe carbone, transport) et vos revenus à chaque tour.</li>
+									<li>Un <strong>système d’historique</strong> (nouvel onglet <em>History</em>) qui récapitule les actions de chaque joueur sous forme de tableau, à chaque round.</li>
+									<li>Une <strong>simulation en tours</strong> : appuyez sur <strong>Calculate Round</strong> pour mettre à jour l’état de la partie (revenus, dépenses, pollution, etc.). La partie se termine automatiquement si un joueur atteint 3000 EC ou si on dépasse le nombre maximal de rounds.</li>
+								</ul>
+							</section>
+
+							<!-- Prérequis Section -->
+							<section id="prerequisites">
+								<h2>Prérequis</h2>
+								<ul>
+									<li><strong>Python 3.x</strong> : Téléchargement depuis <a href="https://www.python.org/downloads/">python.org</a>.</li>
+									<li><strong>Tkinter</strong> : Habituellement inclus avec Python. Si ce n’est pas le cas, installez-le selon votre OS :
+										<ul>
+											<li><strong>Windows/macOS</strong> : Normalement déjà inclus.</li>
+											<li><strong>Linux (Debian/Ubuntu)</strong> : <code>sudo apt-get install python3-tk</code>.</li>
+										</ul>
+									</li>
+								</ul>
+							</section>
+
+							<!-- Installation Section -->
+							<section id="installation">
+								<h2>Installation</h2>
+								<ol>
+									<li><strong>Récupérez le Code Source</strong>
+										<ul>
+											<li>Téléchargez (ou clonez) le fichier <code>eco_factory_challenge.py</code> depuis le dépôt ou la source.</li>
+										</ul>
+									</li>
+									<li><strong>Vérifiez votre version de Python</strong>
+										<p>Dans un terminal ou invite de commande, exécutez :</p>
+										<pre><code>python --version
+ou
+python3 --version</code></pre>
+									</li>
+									<li><strong>Installez Tkinter si nécessaire</strong>
+										<p>Sous Linux/Debian/Ubuntu :</p>
+										<pre><code>sudo apt-get install python3-tk</code></pre>
+									</li>
+									<li><strong>Lancez l’Application</strong>
+										<p>Dans le dossier contenant <code>eco_factory_challenge.py</code>, exécutez :</p>
+										<pre><code>python eco_factory_challenge.py
+ou
+python3 eco_factory_challenge.py</code></pre>
+										<p>L’interface graphique devrait s’ouvrir dans une fenêtre de 1600×900.</p>
+									</li>
+								</ol>
+							</section>
+
+							<!-- Utilisation Section -->
+							<section id="usage">
+								<h2>Utilisation</h2>
+								<h3>1. Création et Sélection d’un Joueur</h3>
+								<ul>
+									<li>Dans la zone supérieure, cliquez sur <strong>Add Player</strong> pour ajouter un joueur (jusqu’à 4 maximum).</li>
+									<li>Donnez-lui un nom puis sélectionnez-le dans la liste déroulante.</li>
+								</ul>
+
+								<h3>2. Navigation par Onglets</h3>
+								<ul>
+									<li><strong>Dashboard</strong> : Vue globale de vos Eco-Credits, Pollution Points et Carbon Credits.</li>
+									<li><strong>Terrain</strong> : Liste des terrains disponibles à l’achat, leurs ressources et leur propriétaire.</li>
+									<li><strong>Factories</strong> : Liste/gestion des usines (construction, retrait).</li>
+									<li><strong>Technologies</strong> : Achat de technologies, suppression avec remboursement partiel.</li>
+									<li><strong>Workers</strong> : Embauche, assignation et retrait des travailleurs.</li>
+									<li><strong>Resources</strong> : Inventaire des ressources, production, consommation et commerce (vente ou échange).</li>
+									<li><strong>Pollution & Costs</strong> : Calcul des coûts (salaires, maintenance, transport), de la pollution et de la taxe carbone.</li>
+									<li><strong>History</strong> : Historique des actions, par joueur et par round, avec un affichage en mode tableau.</li>
+								</ul>
+
+								<h3>3. Déroulement d’un Round</h3>
+								<ol>
+									<li><strong>Effectuez vos actions</strong> : Achetez des terrains, embauchez des travailleurs, construisez des usines, acquérez des technologies, etc.</li>
+									<li><strong>Cliquez sur "Calculate Round"</strong> (onglet <em>Pollution & Costs</em>) : L’application calcule les revenus, dépenses, pollution, et applique les changements (achat de ressources, vente, etc.).</li>
+									<li><strong>Vérification de fin de partie</strong> :
+										<ul>
+											<li>Si un joueur atteint <strong>3000 EC</strong>, la partie s’arrête immédiatement et détermine le vainqueur.</li>
+											<li>Si vous dépassez <strong>6 rounds</strong>, la partie s’arrête également et calcule un score final basé sur l’EC et la pollution.</li>
+										</ul>
+									</li>
+									<li><strong>Consultez l’onglet "History"</strong> pour un récapitulatif détaillé des actions de chaque joueur à ce round.</li>
+								</ol>
+							</section>
+
+							<!-- Fonctionnalités Clés Section -->
+							<section id="features">
+								<h2>Fonctionnalités Clés</h2>
+
+								<h3>Dashboard</h3>
+								<p>Affiche les informations majeures concernant le joueur sélectionné :</p>
+								<ul>
+									<li><strong>Eco-Credits (EC)</strong> : Votre argent disponible.</li>
+									<li><strong>Pollution Points (PP)</strong> : Votre pollution cumulée.</li>
+									<li><strong>Carbon Credits</strong> : Pour compenser vos émissions, selon les règles du jeu.</li>
+								</ul>
+
+								<h3>Terrain</h3>
+								<ul>
+									<li><strong>Liste des Terrains</strong> : Chaque tuile affiche son type, son coût, ses ressources, son potentiel de compensation carbone (offset) et le nom du propriétaire.</li>
+									<li><strong>Achat de Terrain</strong> : Si vous avez suffisamment d’EC, vous pouvez acquérir un terrain qui n’est pas encore possédé.</li>
+									<li><strong>Ressources Disponibles</strong> : Les ressources peuvent être exploitées par la construction d’usines autorisées sur le terrain.</li>
+								</ul>
+
+								<h3>Factories</h3>
+								<ul>
+									<li><strong>Construction d’Usine</strong> : Sélectionnez le type d’usine (exemple : "Timber Logging Camp", "Crop Farm", etc.), puis choisissez un terrain vous appartenant et compatible.</li>
+									<li><strong>Coûts et Pollution</strong> : Chaque usine a un coût de construction, un coût opérationnel, une pollution générée, et peut nécessiter certaines ressources pour fonctionner.</li>
+									<li><strong>Transport</strong> : Gérez le type de transport (électrique ou fossile) pour l’acheminement des ressources, affectant coûts et pollution.</li>
+									<li><strong>Assignation de Travailleurs</strong> : Pour un fonctionnement optimal, certaines usines exigent un certain nombre de travailleurs d’un rôle précis.</li>
+									<li><strong>EC Output</strong> : Nombre d’EC générés directement chaque round (en plus d’autres bénéfices potentiels).</li>
+								</ul>
+
+								<h3>Technologies</h3>
+								<ul>
+									<li><strong>Achat de Technologies</strong> : Investissez dans des améliorations (ex: réduction de pollution, optimisation de production, rabais de transport).</li>
+									<li><strong>Coûts et Maintenance</strong> : Chaque technologie a un coût d’achat et un entretien (maintenance) qui vous est facturé à chaque round.</li>
+									<li><strong>Prérequis</strong> : Certaines technologies exigent un certain rôle de travailleur (ex: <em>Engineer</em>, <em>Technician</em>, etc.) ou une autre technologie déjà acquise.</li>
+									<li><strong>Remboursement Partiel</strong> : Vous pouvez revendre une technologie pour récupérer la moitié de son coût initial.</li>
+								</ul>
+
+								<h3>Workers</h3>
+								<ul>
+									<li><strong>Rôles</strong> : <em>Engineer</em>, <em>Technician</em>, <em>Environmental Advisor</em>, <em>Universal Worker</em>.</li>
+									<li><strong>Salaire et Bénéfices</strong> : Chaque rôle a un salaire (prélevé à chaque round) et offre des avantages particuliers (réduction de pollution, boost de production, etc.).</li>
+									<li><strong>Embauche</strong> : Vérifiez que vous avez suffisamment d’EC pour payer le salaire du premier round.</li>
+									<li><strong>Assignation</strong> : Les usines peuvent exiger ou bénéficier de certains rôles. Assignez-les pour maximiser votre efficacité.</li>
+								</ul>
+
+								<h3>Resources</h3>
+								<ul>
+									<li><strong>Inventaire</strong> : Consultez la quantité de chaque ressource disponible pour le joueur sélectionné.</li>
+									<li><strong>Production / Consommation</strong> : Les usines produisent et consomment des ressources (ou les vendent).</li>
+									<li><strong>Commerce</strong> : Achetez des ressources manquantes à la banque (à prix majoré) ou vendez votre surplus pour obtenir des EC. Effectuez aussi des échanges entre joueurs si désiré.</li>
+								</ul>
+
+								<h3>Pollution & Costs</h3>
+								<ul>
+									<li><strong>Pollution Totale (PP)</strong> : Cumul de la pollution générée par vos usines et votre transport.</li>
+									<li><strong>Taxe Carbone</strong> : 5 EC par point de pollution, prélevés à chaque round.</li>
+									<li><strong>Salaires, Maintenance et Transport</strong> : Coûts liés aux travailleurs, aux technologies, et au transport.</li>
+									<li><strong>Calculate Round</strong> : Lance le calcul des revenus (production, ventes, etc.) et des dépenses, modifie vos EC et PP, et vérifie les conditions de fin de partie.</li>
+								</ul>
+
+								<h3>History</h3>
+								<ul>
+									<li><strong>Tableau des Actions</strong> : Chaque round, chaque joueur voit un résumé de ses décisions (achat de terrains, constructions, embauches, ventes, etc.) et son résultat économique (net gain/perte, pollution).</li>
+									<li><strong>Multilignes</strong> : Les actions et les données économiques sont affichées dans un tableau ajusté, permettant une vue condensée de chaque round.</li>
+									<li><strong>Conservation des Logs</strong> : L’historique vous aide à retracer les stratégies et changements au fil de la partie.</li>
+								</ul>
+							</section>
+
+							<!-- Contribution Section -->
+							<section id="contribution">
+								<h2>Contribution</h2>
+								<p>Nous accueillons toute proposition d’amélioration ou de correction. Pour contribuer :</p>
+								<ol>
+									<li><strong>Fork</strong> le dépôt.</li>
+									<li>Créez une nouvelle branche pour votre fonctionnalité
+										<pre><code>git checkout -b feature/AmazingFeature</code></pre>
+									</li>
+									<li>Faites vos modifications et <strong>commit</strong>-ez
+										<pre><code>git commit -m 'Add some AmazingFeature'</code></pre>
+									</li>
+									<li><strong>Push</strong> la branche
+										<pre><code>git push origin feature/AmazingFeature</code></pre>
+									</li>
+									<li>Ouvrez une <strong>Pull Request</strong> pour examen.</li>
+								</ol>
+								<p>---</p>
+								<p>Bon jeu et restez éco-responsables !</p>
+							</section>
+
+							<!-- Licence Section -->
+							<section id="license">
+								<h2>Licence</h2>
+								<p>Ce projet est sous licence Apache 2.0. Consultez le fichier <a href="LICENSE">LICENSE</a> pour plus de détails.</p>
+							</section>
+
+							<!-- Remerciements Section -->
+							<section id="acknowledgements">
+								<h2>Remerciements</h2>
+								<p>Merci.</p>
+							</section>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section>
+							<ul class="copyright">
+								<li>&copy; ECO-Factory Challenge. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
